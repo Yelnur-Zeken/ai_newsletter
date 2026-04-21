@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobescape · AI Brief · 21 апреля 2026</title>
+<style>
+  :root {
+    --bg: #08080f;
+    --card: #0f0f1a;
+    --card2: #141420;
+    --border: #1e1e30;
+    --accent: #7c5cfc;
+    --teal: #4fd1c5;
+    --orange: #f6a623;
+    --red: #f56565;
+    --green: #48bb78;
+    --yellow: #ecc94b;
+    --pink: #f687b3;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --sub: #94a3b8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:var(--bg); color:var(--text);
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    padding:24px; min-height:100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:24px; padding-bottom:16px; border-bottom:1px solid var(--border);
+  }
+  .brand { display:flex; align-items:center; gap:12px; }
+  .brand-logo {
+    font-size:1.1rem; font-weight:900; letter-spacing:-0.5px;
+    background:linear-gradient(135deg,#a78bfa,#4fd1c5);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+  .brand-sub { font-size:0.72rem; color:var(--muted); margin-top:1px; }
+  .date-pill {
+    background:var(--card2); border:1px solid var(--border);
+    padding:6px 14px; border-radius:20px; font-size:0.75rem;
+    color:var(--sub); font-weight:600; display:flex; align-items:center; gap:7px;
+  }
+  .date-pill::before {
+    content:''; width:6px; height:6px; border-radius:50%;
+    background:var(--green); box-shadow:0 0 6px var(--green);
+    animation:blink 2s infinite;
+  }
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+
+  /* ── GRID ── */
+  .g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .g2 { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .g3-narrow { display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:14px; }
+  .mb { margin-bottom:14px; }
+
+  /* ── CARD ── */
+  .card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:14px; padding:18px; position:relative; overflow:hidden;
+  }
+  .card-title {
+    font-size:0.67rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:1.2px; color:var(--muted); margin-bottom:14px;
+    display:flex; align-items:center; gap:6px;
+  }
+
+  /* ── STAT CARDS ── */
+  .stat-val { font-size:1.9rem; font-weight:900; letter-spacing:-1px; line-height:1; margin-bottom:4px; }
+  .stat-label { font-size:0.72rem; color:var(--sub); line-height:1.4; }
+  .badge {
+    display:inline-block; font-size:0.65rem; font-weight:700;
+    padding:2px 9px; border-radius:10px; margin-top:8px;
+  }
+  .b-green { background:rgba(72,187,120,.15); color:var(--green); }
+  .b-orange { background:rgba(246,166,35,.15); color:var(--orange); }
+  .b-purple { background:rgba(167,139,250,.15); color:#a78bfa; }
+  .b-teal { background:rgba(79,209,197,.15); color:var(--teal); }
+  .b-red { background:rgba(245,101,101,.15); color:var(--red); }
+  .b-yellow { background:rgba(236,201,75,.15); color:var(--yellow); }
+  .b-pink { background:rgba(246,135,179,.15); color:var(--pink); }
+
+  /* ── SECTION LABEL ── */
+  .section {
+    font-size:0.7rem; font-weight:800; text-transform:uppercase;
+    letter-spacing:1.4px; color:var(--muted); margin-bottom:10px;
+    margin-top:20px; display:flex; align-items:center; gap:8px;
+  }
+  .section::after { content:''; flex:1; height:1px; background:var(--border); }
+
+  /* ── TEACH TODAY LIST ── */
+  .teach-item {
+    display:flex; gap:12px; padding:11px 0;
+    border-bottom:1px solid var(--border);
+  }
+  .teach-item:last-child { border-bottom:none; padding-bottom:0; }
+  .teach-item:first-child { padding-top:0; }
+  .teach-num {
+    width:22px; height:22px; border-radius:7px; display:flex;
+    align-items:center; justify-content:center; font-size:0.68rem;
+    font-weight:800; flex-shrink:0; margin-top:1px;
+  }
+  .teach-body { flex:1; }
+  .teach-title { font-size:0.85rem; font-weight:700; line-height:1.35; margin-bottom:4px; }
+  .teach-desc { font-size:0.73rem; color:var(--sub); line-height:1.4; }
+  .teach-tags { display:flex; gap:5px; flex-wrap:wrap; margin-top:6px; }
+  .tag {
+    font-size:0.62rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.5px; padding:1px 8px; border-radius:8px; border:1px solid;
+  }
+  .t-green { color:var(--green); border-color:rgba(72,187,120,.3); background:rgba(72,187,120,.08); }
+  .t-orange { color:var(--orange); border-color:rgba(246,166,35,.3); background:rgba(246,166,35,.08); }
+  .t-purple { color:#a78bfa; border-color:rgba(167,139,250,.3); background:rgba(167,139,250,.08); }
+  .t-teal { color:var(--teal); border-color:rgba(79,209,197,.3); background:rgba(79,209,197,.08); }
+  .t-red { color:var(--red); border-color:rgba(245,101,101,.3); background:rgba(245,101,101,.08); }
+  .t-yellow { color:var(--yellow); border-color:rgba(236,201,75,.3); background:rgba(236,201,75,.08); }
+  .t-pink { color:var(--pink); border-color:rgba(246,135,179,.3); background:rgba(246,135,179,.08); }
+
+  /* ── HOOK CARD ── */
+  .hook-item {
+    padding:11px 13px; border-radius:10px; border:1px solid var(--border);
+    background:var(--card2); margin-bottom:8px;
+  }
+  .hook-item:last-child { margin-bottom:0; }
+  .hook-label {
+    font-size:0.62rem; font-weight:800; text-transform:uppercase;
+    letter-spacing:0.8px; margin-bottom:5px;
+  }
+  .hook-text { font-size:0.82rem; font-weight:600; line-height:1.4; margin-bottom:5px; }
+  .hook-why { font-size:0.72rem; color:var(--sub); line-height:1.4; }
+
+  /* ── HUSTLE ROW ── */
+  .hustle-item {
+    display:flex; align-items:flex-start; gap:10px;
+    padding:10px 0; border-bottom:1px solid var(--border);
+  }
+  .hustle-item:first-child { padding-top:0; }
+  .hustle-item:last-child { border-bottom:none; padding-bottom:0; }
+  .hustle-emoji { font-size:1.1rem; flex-shrink:0; margin-top:1px; }
+  .hustle-name { font-size:0.83rem; font-weight:700; margin-bottom:3px; }
+  .hustle-desc { font-size:0.72rem; color:var(--sub); line-height:1.4; }
+  .hustle-earn {
+    font-size:0.75rem; font-weight:800; margin-top:5px;
+    padding:2px 9px; border-radius:8px; display:inline-block;
+  }
+
+  /* ── COMPETITOR ROW ── */
+  .comp-item {
+    display:flex; align-items:flex-start; gap:10px;
+    padding:10px 0; border-bottom:1px solid var(--border);
+  }
+  .comp-item:first-child { padding-top:0; }
+  .comp-item:last-child { border-bottom:none; padding-bottom:0; }
+  .comp-icon {
+    width:32px; height:32px; border-radius:8px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.9rem; border:1px solid var(--border); background:var(--card2);
+  }
+  .comp-name { font-size:0.82rem; font-weight:700; margin-bottom:2px; }
+  .comp-action { font-size:0.72rem; color:var(--sub); line-height:1.4; }
+  .comp-signal {
+    margin-left:auto; font-size:0.65rem; font-weight:800;
+    padding:2px 8px; border-radius:8px; white-space:nowrap; flex-shrink:0;
+    margin-top:2px;
+  }
+
+  /* ── AUDIENCE PAIN ── */
+  .pain-item {
+    padding:10px 12px; border-radius:10px; border:1px solid;
+    margin-bottom:8px;
+  }
+  .pain-item:last-child { margin-bottom:0; }
+  .pain-q { font-size:0.82rem; font-weight:700; margin-bottom:3px; line-height:1.4; }
+  .pain-hint { font-size:0.71rem; line-height:1.4; }
+  .pain-green { background:rgba(72,187,120,.05); border-color:rgba(72,187,120,.2); }
+  .pain-orange { background:rgba(246,166,35,.05); border-color:rgba(246,166,35,.2); }
+  .pain-purple { background:rgba(167,139,250,.05); border-color:rgba(167,139,250,.2); }
+
+  /* ── TOOL PILL ── */
+  .tool-grid { display:flex; flex-wrap:wrap; gap:8px; }
+  .tool-pill {
+    display:flex; align-items:center; gap:6px;
+    background:var(--card2); border:1px solid var(--border);
+    padding:6px 12px; border-radius:10px; font-size:0.78rem;
+  }
+  .tool-name { font-weight:700; }
+  .tool-desc { color:var(--sub); font-size:0.7rem; }
+  .tool-hot { font-size:0.62rem; padding:1px 6px; border-radius:6px; margin-left:2px; }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top:24px; padding-top:14px; border-top:1px solid var(--border);
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:0.68rem; color:var(--muted); flex-wrap:wrap; gap:8px;
+  }
+
+  @media(max-width:960px){
+    .g4{grid-template-columns:repeat(2,1fr);}
+    .g3,.g3-narrow{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:620px){
+    .g4,.g3,.g2,.g3-narrow{grid-template-columns:1fr;}
+    body{padding:12px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="brand">
+    <div>
+      <div class="brand-logo">⚡ Jobescape · AI Brief</div>
+      <div class="brand-sub">Для продуктовой и маркетинговой команды</div>
+    </div>
+  </div>
+  <div class="date-pill">21 апреля 2026 · данные за 00:00–23:59</div>
+</div>
+
+<!-- ═══ БЛОК 1: 4 СИГНАЛА ДНЯ ═══ -->
+<div class="section">📡 Сигналы дня</div>
+<div class="g4 mb">
+
+  <div class="card">
+    <div class="card-title">🔥 Главный инсайт</div>
+    <div style="font-size:0.88rem;font-weight:700;line-height:1.4;color:#a78bfa;">Anthropic обогнал OpenAI по выручке</div>
+    <div style="font-size:0.72rem;color:var(--sub);margin-top:5px;">$30B ARR — рост в 30x за 15 месяцев. Люди платят за AI больше, чем когда-либо.</div>
+    <span class="badge b-purple">→ Ваша аудитория должна это знать</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📢 Вирусный момент</div>
+    <div style="font-size:0.88rem;font-weight:700;line-height:1.4;color:var(--orange);">«9 AI-сотрудников» Клэр Во</div>
+    <div style="font-size:0.72rem;color:var(--sub);margin-top:5px;">Предпринимательница взорвала LinkedIn: рассказала, как заменила отдел AI-агентами.</div>
+    <span class="badge b-orange">→ Горячая тема для контента</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚠️ Барьер аудитории</div>
+    <div style="font-size:0.88rem;font-weight:700;line-height:1.4;color:var(--yellow);">«AI меня заменит» — страх растёт</div>
+    <div style="font-size:0.72rem;color:var(--sub);margin-top:5px;">Nature опубликовал: «Учёные пока лучше AI». Люди ищут подтверждение своей ценности.</div>
+    <span class="badge b-yellow">→ Контент-угол: «Как стать незаменимым»</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📈 Тренд недели</div>
+    <div style="font-size:0.88rem;font-weight:700;line-height:1.4;color:var(--teal);">MCP — 97 млн установок</div>
+    <div style="font-size:0.72rem;color:var(--sub);margin-top:5px;">Протокол AI-агентов стал стандартом за год. Агенты — следующая большая волна.</div>
+    <span class="badge b-teal">→ Тема следующего урока в приложении</span>
+  </div>
+
+</div>
+
+<!-- ═══ БЛОК 2: ЧТО УЧИТЬ + SIDE HUSTLE ═══ -->
+<div class="g2 mb">
+
+  <!-- ЧТО УЧИТЬ СЕГОДНЯ -->
+  <div class="card">
+    <div class="card-title">🎓 Что учить сегодня — новые инструменты</div>
+    <div class="teach-item">
+      <div class="teach-num" style="background:rgba(79,209,197,.15);color:var(--teal);">1</div>
+      <div class="teach-body">
+        <div class="teach-title">Gemini 3.1 — голос + картинка в реальном времени</div>
+        <div class="teach-desc">Google выпустил обновление с live voice & image анализом. Показать: как вести переговоры, описывать товар, учить язык через камеру.</div>
+        <div class="teach-tags">
+          <span class="tag t-teal">Бесплатно</span>
+          <span class="tag t-green">Для новичков</span>
+          <span class="tag t-orange">Горячий релиз</span>
+        </div>
+      </div>
+    </div>
+    <div class="teach-item">
+      <div class="teach-num" style="background:rgba(167,139,250,.15);color:#a78bfa;">2</div>
+      <div class="teach-body">
+        <div class="teach-title">Cursor Composer 2 — пиши код без программирования</div>
+        <div class="teach-desc">Новая версия сделала code-агентов default. Урок: «Сделай сайт-портфолио за 20 минут» — без навыков кодинга.</div>
+        <div class="teach-tags">
+          <span class="tag t-purple">Заработок</span>
+          <span class="tag t-teal">Фриланс</span>
+        </div>
+      </div>
+    </div>
+    <div class="teach-item">
+      <div class="teach-num" style="background:rgba(246,166,35,.15);color:var(--orange);">3</div>
+      <div class="teach-body">
+        <div class="teach-title">AI-сотрудники: как делегировать работу агентам</div>
+        <div class="teach-desc">Тема дня в LinkedIn (кейс Клэр Во). Разобрать на простых примерах: email-агент, research-агент, SMM-агент.</div>
+        <div class="teach-tags">
+          <span class="tag t-orange">Вирусный</span>
+          <span class="tag t-purple">Продуктивность</span>
+        </div>
+      </div>
+    </div>
+    <div class="teach-item">
+      <div class="teach-num" style="background:rgba(246,135,179,.15);color:var(--pink);">4</div>
+      <div class="teach-body">
+        <div class="teach-title">Microsoft MAI: голос и транскрипция по $0.36/час</div>
+        <div class="teach-desc">Новые модели с дешёвой транскрипцией. Урок: «Записывай встречи, получай резюме и задачи автоматически».</div>
+        <div class="teach-tags">
+          <span class="tag t-teal">Новый инструмент</span>
+          <span class="tag t-green">Эффективность</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDE HUSTLE СИГНАЛЫ -->
+  <div class="card">
+    <div class="card-title">💰 Side Hustle сигналы дня</div>
+    <div class="hustle-item">
+      <div class="hustle-emoji">🎙️</div>
+      <div>
+        <div class="hustle-name">AI-дубляж и локализация видео</div>
+        <div class="hustle-desc">Рост спроса на локализацию контента. Gemini 3.1 с real-time voice делает это проще. Клиенты платят за скорость и качество.</div>
+        <div class="hustle-earn b-green badge">$100–500 за видео</div>
+      </div>
+    </div>
+    <div class="hustle-item">
+      <div class="hustle-emoji">🤖</div>
+      <div>
+        <div class="hustle-name">Настройка AI-агентов для малого бизнеса</div>
+        <div class="hustle-desc">Кейс с «9 AI-сотрудниками» завирусился → малый бизнес хочет то же самое. Спрос на настройку агентов резко вырос.</div>
+        <div class="hustle-earn b-orange badge">$500–2000 за проект</div>
+      </div>
+    </div>
+    <div class="hustle-item">
+      <div class="hustle-emoji">📱</div>
+      <div>
+        <div class="hustle-name">Короткое AI-видео (30 сек) для брендов</div>
+        <div class="hustle-desc">InVideo, CapCut AI — создание видео за минуты. 88% маркетологов используют AI ежедневно → есть постоянный спрос.</div>
+        <div class="hustle-earn b-teal badge">$50–300 за ролик</div>
+      </div>
+    </div>
+    <div class="hustle-item">
+      <div class="hustle-emoji">💻</div>
+      <div>
+        <div class="hustle-name">Сайты и лендинги через Cursor / AI</div>
+        <div class="hustle-desc">Cursor Composer 2 вышел сегодня. Порог входа — 0 навыков кода. Средний чек на фрилансе $300–800 за сайт.</div>
+        <div class="hustle-earn b-purple badge">$300–800 за сайт</div>
+      </div>
+    </div>
+    <div class="hustle-item">
+      <div class="hustle-emoji">🎓</div>
+      <div>
+        <div class="hustle-name">Мини-курсы по AI-инструментам</div>
+        <div class="hustle-desc">Google запускает AI Educator Series (май 2026). Спрос на обучение продолжает расти. Ниша не насыщена.</div>
+        <div class="hustle-earn b-yellow badge">$500–3000 за курс</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ БЛОК 3: КОНТЕНТ-ХУКИ + КОНКУРЕНТЫ + АУДИТОРИЯ ═══ -->
+<div class="g3 mb">
+
+  <!-- КОНТЕНТ-ХУКИ -->
+  <div class="card">
+    <div class="card-title">✍️ Контент-хуки для маркетинга</div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:var(--red);">🔥 Максимальный охват</div>
+      <div class="hook-text">«Anthropic обогнал OpenAI. Что это значит для тебя?»</div>
+      <div class="hook-why">Люди следят за этой гонкой. Дать простое объяснение + урок: какой AI сейчас лучший для заработка.</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:var(--orange);">📢 Вирусный угол</div>
+      <div class="hook-text">«Эта женщина уволила команду и нанял 9 AI. Вот как это работает»</div>
+      <div class="hook-why">Кейс Клэр Во взорвал LinkedIn. Переупаковать в формат «разбор для новичков» — обучающий контент с хорошим CTR.</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:var(--teal);">🧠 Образовательный</div>
+      <div class="hook-text">«Gemini теперь видит и слышит в реальном времени. 5 способов заработать»</div>
+      <div class="hook-why">Свежий релиз + практическое применение = лучший формат для EdTech-контента. Показать конкретные use-cases.</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:var(--yellow);">💡 Закрытие страха</div>
+      <div class="hook-text">«Наука говорит: ты всё ещё лучше AI. Но только если сделаешь это»</div>
+      <div class="hook-why">Nature написал что учёные лучше AI → закрывает страх «AI заменит». Идеальный крючок для вашей аудитории.</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#a78bfa);">🚀 Инспирейшн</div>
+      <div class="hook-text">«ChatGPT запустил рекламу. Скоро каждый сможет зарабатывать внутри чата»</div>
+      <div class="hook-why">OpenAI ввёл CPC-рекламу. Для аудитории — сигнал новой возможности. Нативный переход к теме AI-монетизации.</div>
+    </div>
+  </div>
+
+  <!-- КОНКУРЕНТЫ / РЫНОК -->
+  <div class="card">
+    <div class="card-title">🔭 Конкуренты и рынок</div>
+    <div class="comp-item">
+      <div class="comp-icon">🎓</div>
+      <div>
+        <div class="comp-name">Google · AI Educator Series</div>
+        <div class="comp-action">Запуск 13 мая. Бесплатные модули + карьерные сертификаты. Угроза: бесплатный обучающий контент от Google.</div>
+      </div>
+      <span class="comp-signal b-red badge">⚠️ Следить</span>
+    </div>
+    <div class="comp-item">
+      <div class="comp-icon">🤝</div>
+      <div>
+        <div class="comp-name">Khanmigo (Khan Academy)</div>
+        <div class="comp-action">AI-тьютор с персональными объяснениями. Интегрирован в школы США. Растёт в B2C сегменте.</div>
+      </div>
+      <span class="comp-signal b-yellow badge">👀 Мониторинг</span>
+    </div>
+    <div class="comp-item">
+      <div class="comp-icon">📊</div>
+      <div>
+        <div class="comp-name">Juma / Team-GPT</div>
+        <div class="comp-action">EdTech-платформа на ChatGPT/GPT-4. Фокус на корпоративное обучение. Другой сегмент, но пересечение по теме.</div>
+      </div>
+      <span class="comp-signal b-teal badge">📌 Изучить</span>
+    </div>
+    <div class="comp-item">
+      <div class="comp-icon">🖥️</div>
+      <div>
+        <div class="comp-name">Canva AI 2.0</div>
+        <div class="comp-action">Стал полноценной agentic-платформой. Аудитория «хочу делать контент» уходит туда. Возможность: учить Canva AI внутри Jobescape.</div>
+      </div>
+      <span class="comp-signal b-orange badge">💡 Партнёр?</span>
+    </div>
+
+    <div style="margin-top:14px;padding:10px 12px;border-radius:10px;background:rgba(79,209,197,.06);border:1px solid rgba(79,209,197,.2);">
+      <div style="font-size:0.68rem;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;">Ваше преимущество</div>
+      <div style="font-size:0.75rem;color:var(--sub);line-height:1.5;">Конкуренты учат использовать AI. Jobescape учит <strong style="color:var(--text);">зарабатывать</strong> с AI. Это ниша. Держите фокус.</div>
+    </div>
+  </div>
+
+  <!-- АУДИТОРИЯ -->
+  <div class="card">
+    <div class="card-title">🙋 Что спрашивает аудитория</div>
+
+    <div class="pain-item pain-orange">
+      <div class="pain-q">«AI меня заменит — зачем вообще учиться?»</div>
+      <div class="pain-hint" style="color:var(--sub);">Nature: учёные пока лучше AI в сложных задачах. Ответ: учись управлять AI → станешь в 10x ценнее, а не заменимее.</div>
+    </div>
+
+    <div class="pain-item pain-green">
+      <div class="pain-q">«С чего начать зарабатывать с AI прямо сейчас?»</div>
+      <div class="pain-hint" style="color:var(--sub);">Самый частый запрос. Горячие ниши сегодня: AI-видео, агенты для бизнеса, локализация. Показать конкретный путь.</div>
+    </div>
+
+    <div class="pain-item pain-purple">
+      <div class="pain-q">«Какой AI сейчас лучший — ChatGPT или Claude?»</div>
+      <div class="pain-hint" style="color:var(--sub);">Anthropic обогнал OpenAI по ARR — аудитория это заметит. Сделать сравнительный урок: что когда использовать.</div>
+    </div>
+
+    <div class="pain-item pain-orange">
+      <div class="pain-q">«Как сделать AI-агента без знания кода?»</div>
+      <div class="pain-hint" style="color:var(--sub);">Кейс «9 AI-сотрудников» завирусился → спрос на практические гайды. Cursor, Make.com, n8n — инструменты без кода.</div>
+    </div>
+
+    <div style="margin-top:12px;padding:10px 12px;border-radius:10px;background:rgba(236,201,75,.06);border:1px solid rgba(236,201,75,.2);">
+      <div style="font-size:0.68rem;font-weight:800;color:var(--yellow);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;">Идея для приложения</div>
+      <div style="font-size:0.75rem;color:var(--sub);line-height:1.5;">Добавить раздел <strong style="color:var(--text);">«Горячие возможности недели»</strong> — топ-3 способа заработать с AI прямо сейчас. Обновлять каждую неделю.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ БЛОК 4: ИНСТРУМЕНТЫ ДНЯ ═══ -->
+<div class="section">🛠️ Инструменты дня — стоит знать</div>
+<div class="card mb">
+  <div class="tool-grid">
+    <div class="tool-pill">
+      <span>🌊</span>
+      <div>
+        <div class="tool-name">Gemini 3.1 Ultra</div>
+        <div class="tool-desc">Real-time голос + видео</div>
+      </div>
+      <span class="badge b-red tool-hot">Новый</span>
+    </div>
+    <div class="tool-pill">
+      <span>💻</span>
+      <div>
+        <div class="tool-name">Cursor Composer 2</div>
+        <div class="tool-desc">Код без программирования</div>
+      </div>
+      <span class="badge b-red tool-hot">Новый</span>
+    </div>
+    <div class="tool-pill">
+      <span>🎨</span>
+      <div>
+        <div class="tool-name">Canva AI 2.0</div>
+        <div class="tool-desc">Agentic design suite</div>
+      </div>
+      <span class="badge b-orange tool-hot">Апгрейд</span>
+    </div>
+    <div class="tool-pill">
+      <span>🔗</span>
+      <div>
+        <div class="tool-name">MCP (97M установок)</div>
+        <div class="tool-desc">Стандарт AI-агентов</div>
+      </div>
+      <span class="badge b-teal tool-hot">Тренд</span>
+    </div>
+    <div class="tool-pill">
+      <span>🎙️</span>
+      <div>
+        <div class="tool-name">Microsoft MAI-Voice-1</div>
+        <div class="tool-desc">Транскрипция от $0.36/ч</div>
+      </div>
+      <span class="badge b-red tool-hot">Новый</span>
+    </div>
+    <div class="tool-pill">
+      <span>🌙</span>
+      <div>
+        <div class="tool-name">Kimi K2.6 (Moonshot)</div>
+        <div class="tool-desc">Мульти-агент, 300 sub</div>
+      </div>
+      <span class="badge b-red tool-hot">Новый</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>Jobescape · AI Daily Brief · 21 апреля 2026</div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;">
+    <span>Источники: AI Flash Report · llm-stats.com · Crunchbase · Nature · CNBC · JDSupra</span>
+  </div>
+</div>
+
+</body>
+</html>
