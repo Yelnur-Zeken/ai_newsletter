@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobescape · AI Brief · 2026-04-20</title>
+<style>
+  :root {
+    --bg:#08080f; --card:#0f0f1a; --card2:#141420; --border:#1e1e30;
+    --accent:#7c5cfc; --teal:#4fd1c5; --orange:#f6a623; --red:#f56565;
+    --green:#48bb78; --yellow:#ecc94b; --pink:#f687b3;
+    --text:#e2e8f0; --muted:#64748b; --sub:#94a3b8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; padding:24px; max-width:1400px; margin:0 auto; }
+  .section-title {
+    font-size:0.65rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:12px; display:flex; align-items:center; gap:8px;
+  }
+  .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; }
+  .card2 { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:14px; }
+  .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:24px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:24px; }
+  .grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:24px; }
+  .tag {
+    display:inline-block; font-size:0.6rem; font-weight:700; padding:2px 8px;
+    border-radius:20px; text-transform:uppercase; letter-spacing:0.05em;
+  }
+  .tag-purple { background:rgba(124,92,252,0.18); color:#a78bfa; }
+  .tag-teal   { background:rgba(79,209,197,0.15); color:#4fd1c5; }
+  .tag-orange { background:rgba(246,166,35,0.15); color:#f6a623; }
+  .tag-red    { background:rgba(245,101,101,0.15); color:#f56565; }
+  .tag-green  { background:rgba(72,187,120,0.15); color:#48bb78; }
+  .tag-yellow { background:rgba(236,201,75,0.15); color:#ecc94b; }
+  .tag-pink   { background:rgba(246,135,179,0.15); color:#f687b3; }
+  .tag-blue   { background:rgba(99,179,237,0.15); color:#63b3ed; }
+  .signal-card { border-radius:12px; padding:16px; border:1px solid var(--border); position:relative; overflow:hidden; }
+  .signal-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+  .s1::before { background:linear-gradient(90deg,#7c5cfc,#4fd1c5); }
+  .s2::before { background:linear-gradient(90deg,#f6a623,#f687b3); }
+  .s3::before { background:linear-gradient(90deg,#48bb78,#4fd1c5); }
+  .s4::before { background:linear-gradient(90deg,#f56565,#f6a623); }
+  .signal-card .label { font-size:0.58rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+  .signal-card h3 { font-size:0.88rem; font-weight:700; line-height:1.3; margin-bottom:8px; }
+  .signal-card p { font-size:0.75rem; color:var(--sub); line-height:1.55; }
+  .insight-box { margin-top:10px; background:rgba(124,92,252,0.08); border:1px solid rgba(124,92,252,0.2); border-radius:8px; padding:8px 10px; font-size:0.72rem; color:#c4b5fd; line-height:1.5; }
+  .insight-box strong { color:#a78bfa; }
+  .tool-item { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid var(--border); }
+  .tool-item:last-child { border-bottom:none; padding-bottom:0; }
+  .tool-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+  .tool-name { font-size:0.82rem; font-weight:700; margin-bottom:2px; }
+  .tool-desc { font-size:0.7rem; color:var(--sub); line-height:1.45; }
+  .tool-tags { display:flex; gap:4px; flex-wrap:wrap; margin-top:4px; }
+  .hustle-item { display:flex; gap:10px; padding:9px 0; border-bottom:1px solid var(--border); align-items:flex-start; }
+  .hustle-item:last-child { border-bottom:none; }
+  .hustle-emoji { font-size:1.25rem; flex-shrink:0; line-height:1; }
+  .hustle-name { font-size:0.8rem; font-weight:700; margin-bottom:2px; }
+  .hustle-desc { font-size:0.68rem; color:var(--sub); line-height:1.4; }
+  .income-badge { display:inline-block; font-size:0.6rem; font-weight:800; padding:2px 7px; border-radius:10px; background:rgba(72,187,120,0.15); color:#48bb78; margin-top:4px; }
+  .hook-item { padding:10px 0; border-bottom:1px solid var(--border); }
+  .hook-item:last-child { border-bottom:none; }
+  .hook-type { font-size:0.58rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+  .hook-text { font-size:0.76rem; line-height:1.45; }
+  .competitor-item { padding:10px 0; border-bottom:1px solid var(--border); }
+  .competitor-item:last-child { border-bottom:none; }
+  .competitor-name { font-size:0.8rem; font-weight:700; margin-bottom:3px; display:flex; align-items:center; gap:6px; }
+  .competitor-move { font-size:0.7rem; color:var(--sub); line-height:1.4; }
+  .signal-badge { font-size:0.58rem; font-weight:800; padding:2px 7px; border-radius:10px; }
+  .signal-high { background:rgba(245,101,101,0.15); color:#f56565; }
+  .signal-med  { background:rgba(246,166,35,0.15); color:#f6a623; }
+  .signal-low  { background:rgba(100,116,139,0.15); color:#94a3b8; }
+  .fear-item { padding:9px 0; border-bottom:1px solid var(--border); display:flex; gap:8px; align-items:flex-start; }
+  .fear-item:last-child { border-bottom:none; }
+  .fear-q { font-size:0.72rem; line-height:1.4; }
+  .fear-q strong { color:var(--text); font-weight:600; }
+  .fear-num { font-size:0.65rem; font-weight:800; color:var(--accent); width:16px; flex-shrink:0; margin-top:2px; }
+  .product-insight { background:rgba(79,209,197,0.07); border:1px solid rgba(79,209,197,0.2); border-radius:8px; padding:10px; margin-top:10px; font-size:0.7rem; color:#81e6d9; line-height:1.5; }
+  .product-insight strong { color:#4fd1c5; }
+  .pill-grid { display:flex; flex-wrap:wrap; gap:8px; }
+  .pill { display:inline-flex; align-items:center; gap:6px; background:var(--card2); border:1px solid var(--border); border-radius:20px; padding:6px 12px; font-size:0.72rem; font-weight:600; }
+  .pill-badge { font-size:0.55rem; font-weight:800; padding:1px 6px; border-radius:8px; }
+  .badge-new  { background:rgba(72,187,120,0.2); color:#48bb78; }
+  .badge-upg  { background:rgba(124,92,252,0.2); color:#a78bfa; }
+  .badge-trend { background:rgba(246,166,35,0.2); color:#f6a623; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid #1e1e30;">
+  <div>
+    <div style="font-size:1.15rem;font-weight:900;background:linear-gradient(135deg,#a78bfa,#4fd1c5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">⚡ Jobescape · AI Brief</div>
+    <div style="font-size:0.72rem;color:#64748b;">Для продуктовой и маркетинговой команды</div>
+  </div>
+  <div style="background:#141420;border:1px solid #1e1e30;padding:6px 14px;border-radius:20px;font-size:0.75rem;color:#94a3b8;font-weight:600;">2026-04-20 (понедельник)</div>
+</div>
+
+<!-- SECTION 1: СИГНАЛЫ ДНЯ -->
+<div class="section-title">🔥 Сигналы дня</div>
+<div class="grid4" style="margin-bottom:28px;">
+
+  <!-- Card 1 -->
+  <div class="signal-card s1" style="background:#0f0f1a;">
+    <div class="label">Главный инсайт</div>
+    <h3>Claude Opus 4.7 теперь доступен всем — лучший в коде и зрении</h3>
+    <p>Anthropic выпустила Claude Opus 4.7 в общий доступ. Модель значительно улучшилась в сложных задачах программирования и видит изображения в высоком разрешении. Цена не изменилась: $5 за млн токенов на вход.</p>
+    <div class="insight-box"><strong>→ что это значит для нас:</strong> Наши курсы по промптингу и AI-ассистентам нужно обновить под Opus 4.7. Это новый стандарт "умного AI" для наших учеников.</div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="signal-card s2" style="background:#0f0f1a;">
+    <div class="label">Вирусный момент</div>
+    <h3>"AI сотрудники" захватили LinkedIn — тема дня в деловых соцсетях</h3>
+    <p>Обсуждения "AI employees" взорвали LinkedIn. Топ-менеджеры делятся кейсами, где один человек с AI заменяет целые отделы. Тема собирает десятки тысяч реакций.</p>
+    <div class="insight-box"><strong>→ что это значит для нас:</strong> Готовый крючок для контента: "Как стать AI-сотрудником и зарабатывать как целый отдел." Публикуй сегодня — тема горячая.</div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="signal-card s3" style="background:#0f0f1a;">
+    <div class="label">Барьер аудитории</div>
+    <h3>46% людей не доверяют AI-инфлюенсерам — и это проблема для EdTech</h3>
+    <p>Новые данные: треть покупателей избегает брендов с AI-рекламой, 46% против AI-инфлюенсеров. При этом спрос на AI-обучение растёт. Парадокс недоверия усиливается.</p>
+    <div class="insight-box"><strong>→ что это значит для нас:</strong> В нашем контенте нужен живой голос — реальные истории учеников, а не AI-аватары. Аутентичность = конверсия.</div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="signal-card s4" style="background:#0f0f1a;">
+    <div class="label">Тренд</div>
+    <h3>Makko AI: создай 2D-видеоигру разговором — запуск на Product Hunt</h3>
+    <p>20 апреля Makko AI вышла на Product Hunt. AI-студия от ветеранов Amazon, Twitch, EA и Nintendo: более 40 000 игровых ассетов в бете, полный цикл от идеи до прототипа игры через чат.</p>
+    <div class="insight-box"><strong>→ что это значит для нас:</strong> Кейс "создай бизнес без кода" — идеальный для урока. Геймдев через AI = новая монетизация для нашей аудитории.</div>
+  </div>
+
+</div>
+
+<!-- SECTION 2: ЧТО УЧИТЬ + SIDE HUSTLE -->
+<div class="grid2">
+
+  <!-- Left: ЧТО УЧИТЬ СЕГОДНЯ -->
+  <div class="card">
+    <div class="section-title">📚 Что учить сегодня</div>
+
+    <div class="tool-item">
+      <div class="tool-icon" style="background:rgba(124,92,252,0.15);">🤖</div>
+      <div>
+        <div class="tool-name">Claude Opus 4.7</div>
+        <div class="tool-desc">Показать, как ускорить работу с кодом, документами и картинками. Сравнить с предыдущей версией — разница заметна сразу. Подойдёт для урока "Твой AI-ассистент 2.0".</div>
+        <div class="tool-tags">
+          <span class="tag tag-green">Лёгкий старт</span>
+          <span class="tag tag-teal">AI-консалтинг / Фриланс</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-item">
+      <div class="tool-icon" style="background:rgba(246,166,35,0.15);">🎮</div>
+      <div>
+        <div class="tool-name">Makko AI</div>
+        <div class="tool-desc">Учим создавать игровые ассеты и прототипы без навыков дизайна. Отлично ложится в урок "Создай продукт без команды". Особенно зайдёт аудитории 18-30 лет.</div>
+        <div class="tool-tags">
+          <span class="tag tag-orange">Средний уровень</span>
+          <span class="tag tag-pink">Digital products / Etsy / Itch.io</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-item">
+      <div class="tool-icon" style="background:rgba(72,187,120,0.15);">💻</div>
+      <div>
+        <div class="tool-name">OpenAI Codex 2.0</div>
+        <div class="tool-desc">Теперь умеет управлять компьютером, браузером, генерировать картинки и автоматизировать задачи. Урок: "AI-агент вместо фрилансера — автоматизируй рутину".</div>
+        <div class="tool-tags">
+          <span class="tag tag-red">Продвинутый</span>
+          <span class="tag tag-teal">AI-автоматизация / Agency</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-item">
+      <div class="tool-icon" style="background:rgba(99,179,237,0.15);">⚡</div>
+      <div>
+        <div class="tool-name">Gemini 3.1 Pro</div>
+        <div class="tool-desc">Лидер по рассуждению среди всех моделей и самый дешёвый по output ($2/млн токенов). Подходит для урока о выборе правильного AI под задачи бюджетно.</div>
+        <div class="tool-tags">
+          <span class="tag tag-green">Лёгкий старт</span>
+          <span class="tag tag-yellow">Снижение затрат / Продуктивность</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Right: SIDE HUSTLE СИГНАЛЫ -->
+  <div class="card">
+    <div class="section-title">💰 Side hustle сигналы</div>
+
+    <div class="hustle-item">
+      <div class="hustle-emoji">🤖</div>
+      <div>
+        <div class="hustle-name">Сборка AI-чат-ботов на заказ</div>
+        <div class="hustle-desc">Малый бизнес массово ищет тех, кто настроит чат-бот для сайта или WhatsApp. Никакого сложного кода — только знание платформ (ManyChat, Botpress, Claude API).</div>
+        <div class="income-badge">$500–$2 000 за проект + абонплата</div>
+      </div>
+    </div>
+
+    <div class="hustle-item">
+      <div class="hustle-emoji">⚙️</div>
+      <div>
+        <div class="hustle-name">AI-автоматизация бизнес-процессов</div>
+        <div class="hustle-desc">С Codex 2.0 и Make/Zapier можно автоматизировать отчёты, email-рассылки, соцсети. Агентства на этом зарабатывают $3 000–$20 000 в месяц с одного клиента.</div>
+        <div class="income-badge">$3 000–$20 000 / мес</div>
+      </div>
+    </div>
+
+    <div class="hustle-item">
+      <div class="hustle-emoji">🎨</div>
+      <div>
+        <div class="hustle-name">AI-гейм-ассеты и цифровые товары</div>
+        <div class="hustle-desc">Makko AI открыла нишу: продавай готовые паки игровых спрайтов, фонов, персонажей на Itch.io, Etsy или в Roblox. Один пак = пассивный доход.</div>
+        <div class="income-badge">$200–$3 000 / мес (пассивно)</div>
+      </div>
+    </div>
+
+    <div class="hustle-item">
+      <div class="hustle-emoji">🧠</div>
+      <div>
+        <div class="hustle-name">AI-тьютор / персональный ментор</div>
+        <div class="hustle-desc">Учи людей работать с AI один на один или в мини-группах. Спрос растёт вместе с количеством новых инструментов. Jobescape — идеальная платформа для этого.</div>
+        <div class="income-badge">$50–$100 / час</div>
+      </div>
+    </div>
+
+    <div class="hustle-item">
+      <div class="hustle-emoji">📊</div>
+      <div>
+        <div class="hustle-name">AI-консалтинг для компаний</div>
+        <div class="hustle-desc">Q1 2026: инвестиции в AI-компании — $242 млрд (в 4 раза больше прошлого года). Компании срочно ищут людей, которые помогут внедрить AI во внутренние процессы.</div>
+        <div class="income-badge">$100–$300 / час</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 3: КОНТЕНТ + КОНКУРЕНТЫ + АУДИТОРИЯ -->
+<div class="grid3">
+
+  <!-- Col 1: КОНТЕНТ-ХУКИ -->
+  <div class="card">
+    <div class="section-title">✍️ Контент-хуки</div>
+
+    <div class="hook-item">
+      <div class="hook-type">🔥 Максимальный охват</div>
+      <div class="hook-text">«Один человек с AI = целый отдел. Вот как это работает прямо сейчас — LinkedIn горит от этой темы» → Покажи кейс замены команды одним AI-пользователем.</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-type">🌊 Вирусный</div>
+      <div class="hook-text">«Я попросил Claude Opus 4.7 сделать то, что раньше занимало 3 часа. Это заняло 4 минуты» → Скринкаст с реальным результатом = идеальное Reels/TikTok.</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-type">📖 Образовательный</div>
+      <div class="hook-text">«Хочешь создать 2D-игру, но нет денег на дизайнера? Makko AI сделает это за тебя» → Пошаговый туториал от идеи до игрового ассета за 10 минут.</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-type">😨 Закрытие страха</div>
+      <div class="hook-text">«Боишься, что AI заменит тебя? Неверный вопрос. Правильный: как стать тем, кто управляет AI» → Переформатируй страх потери работы в мотивацию учиться.</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-type">💫 Инспирейшн</div>
+      <div class="hook-text">«$242 млрд вложили в AI только за первый квартал 2026. Деньги там. Вопрос — ты с той стороны или с этой?» → Призыв начать учиться прямо сейчас.</div>
+    </div>
+
+  </div>
+
+  <!-- Col 2: КОНКУРЕНТЫ -->
+  <div class="card">
+    <div class="section-title">🏁 Конкуренты</div>
+
+    <div class="competitor-item">
+      <div class="competitor-name">
+        Coursera + Physics Wallah
+        <span class="signal-badge signal-high">🔴 Высокий сигнал</span>
+      </div>
+      <div class="competitor-move">Оба EdTech-гиганта объявили о внедрении AI-персонализации: курсы теперь адаптируются под темп и стиль каждого ученика в реальном времени. Прямой ответ на падение completion rate.</div>
+    </div>
+
+    <div class="competitor-item">
+      <div class="competitor-name">
+        Shopify AI Toolkit 2026
+        <span class="signal-badge signal-high">🔴 Высокий сигнал</span>
+      </div>
+      <div class="competitor-move">Shopify запустил новый AI-пакет для соло-предпринимателей: автогенерация описаний, AI-аналитика, готовые чат-боты. Это прямо в нашей нише "зарабатывай с AI".</div>
+    </div>
+
+    <div class="competitor-item">
+      <div class="competitor-name">
+        Google NotebookLM (обновление)
+        <span class="signal-badge signal-med">🟡 Средний сигнал</span>
+      </div>
+      <div class="competitor-move">Google обновил NotebookLM для образования: теперь преподаватели могут создавать интерактивные учебные материалы с AI-подкастами и обзорами. Конкурент для форматов Jobescape.</div>
+    </div>
+
+    <div class="competitor-item">
+      <div class="competitor-name">
+        Claude Mythos (Project Glasswing)
+        <span class="signal-badge signal-low">⚪ Наблюдение</span>
+      </div>
+      <div class="competitor-move">Anthropic подтвердила: суперсильная модель Claude Mythos существует, но закрыта для публики. 50 организаций получили доступ. Если выйдет в массы — сдвинет все бенчмарки.</div>
+    </div>
+
+  </div>
+
+  <!-- Col 3: ЧТО СПРАШИВАЕТ АУДИТОРИЯ -->
+  <div class="card">
+    <div class="section-title">💬 Что спрашивает аудитория</div>
+
+    <div class="fear-item">
+      <div class="fear-num">01</div>
+      <div class="fear-q"><strong>«Меня уволят из-за AI?»</strong> — страх №1 после вирусного треда про "AI-сотрудников". Людям нужен чёткий план, что делать прямо сейчас.</div>
+    </div>
+
+    <div class="fear-item">
+      <div class="fear-num">02</div>
+      <div class="fear-q"><strong>«С чего начать, если я не технарь?»</strong> — большинство хотят зарабатывать с AI, но не понимают первого шага. Запрос на максимально простой онбординг.</div>
+    </div>
+
+    <div class="fear-item">
+      <div class="fear-num">03</div>
+      <div class="fear-q"><strong>«Какой AI выбрать — их уже слишком много»</strong> — Claude, GPT, Gemini, Grok. Аудитории нужна шпаргалка: кто для чего и сколько стоит.</div>
+    </div>
+
+    <div class="fear-item">
+      <div class="fear-num">04</div>
+      <div class="fear-q"><strong>«Реально ли зарабатывать $1 000+/мес с AI без вложений?»</strong> — скептицизм растёт, нужны реальные кейсы с цифрами, а не абстрактные обещания.</div>
+    </div>
+
+    <div class="product-insight">
+      <strong>💡 Продуктовый инсайт:</strong> Сделай в приложении экран "Мой AI-старт за 7 дней" — простой чеклист с конкретными действиями. Это закроет страхи 2 и 4 разом и увеличит активацию новых пользователей.
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 4: ИНСТРУМЕНТЫ ДНЯ -->
+<div class="card" style="margin-bottom:24px;">
+  <div class="section-title">🛠️ Инструменты дня — 20 апреля 2026</div>
+  <div class="pill-grid">
+    <div class="pill">
+      🎮 Makko AI
+      <span class="pill-badge badge-new">NEW</span>
+    </div>
+    <div class="pill">
+      🤖 Claude Opus 4.7
+      <span class="pill-badge badge-upg">UPGRADE</span>
+    </div>
+    <div class="pill">
+      💻 OpenAI Codex 2.0
+      <span class="pill-badge badge-upg">UPGRADE</span>
+    </div>
+    <div class="pill">
+      🔬 GPT-Rosalind
+      <span class="pill-badge badge-new">NEW</span>
+    </div>
+    <div class="pill">
+      ⚡ Gemini 3.1 Pro
+      <span class="pill-badge badge-upg">UPGRADE</span>
+    </div>
+    <div class="pill">
+      📚 NotebookLM for Edu
+      <span class="pill-badge badge-upg">UPGRADE</span>
+    </div>
+    <div class="pill">
+      🛒 Shopify AI Toolkit
+      <span class="pill-badge badge-trend">TREND</span>
+    </div>
+    <div class="pill">
+      🏭 NVIDIA Sovereign AI
+      <span class="pill-badge badge-trend">TREND</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="margin-top:24px;padding-top:14px;border-top:1px solid #1e1e30;font-size:0.68rem;color:#64748b;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+  <div>Jobescape · AI Daily Brief · 2026-04-20</div>
+  <div>Источники: llm-stats.com · GlobeNewswire · TechCrunch · Releasebot · launchaijam.com · crescendo.ai · и др.</div>
+</div>
+
+</body>
+</html>
