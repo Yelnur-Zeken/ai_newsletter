@@ -65,3 +65,36 @@ EXCLUDE: enterprise M&A, chip benchmarks, cloud pricing, regulatory compliance.
 ## DESIGN
 Dark theme. bg=#08080f card=#0f0f1a card2=#141420 border=#1e1e30 purple=#a78bfa teal=#4fd1c5 orange=#f6a623 red=#f56565 green=#48bb78 yellow=#ecc94b text=#e2e8f0 muted=#64748b
 All text in Russian.
+
+## SCREENSHOT & TELEGRAM DELIVERY
+
+After git push, take a screenshot of the dashboard and send it to Telegram:
+
+Step A — Install playwright if not available:
+pip install playwright 2>/dev/null; playwright install chromium 2>/dev/null
+
+Step B — Take screenshot (save as /tmp/dashboard.png):
+python3 << 'PYEOF'
+from playwright.sync_api import sync_playwright
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    page = browser.new_page(viewport={"width": 1400, "height": 900})
+    page.goto("PAGES_URL/FILE_NAME")
+    page.wait_for_timeout(3000)
+    page.screenshot(path="/tmp/dashboard.png", full_page=True)
+    browser.close()
+PYEOF
+
+Step C — Send photo to Telegram (replace YESTERDAY and FILE_NAME with actual values):
+curl -s -X POST "https://api.telegram.org/bot8464854973:AAE290FwWKEUupoNDmg9j9TxUXUd6dgEMnQ/sendPhoto" \
+  -F chat_id=5597477252 \
+  -F photo=@/tmp/dashboard.png \
+  -F "caption=☀️ AI Brief — YESTERDAY
+
+🔥 [главный инсайт дня]
+🛠 Новых инструментов: N
+💰 [топ side hustle]
+
+🔗 https://yelnur-zeken.github.io/ai_newsletter/FILE_NAME"
+
+If screenshot fails for any reason, fall back to sending text-only message with the link.
