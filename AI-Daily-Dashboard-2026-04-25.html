@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobescape · AI Brief · 2026-04-25</title>
+<style>
+  :root {
+    --bg:#08080f; --card:#0f0f1a; --card2:#141420; --border:#1e1e30;
+    --accent:#7c5cfc; --teal:#4fd1c5; --orange:#f6a623; --red:#f56565;
+    --green:#48bb78; --yellow:#ecc94b; --pink:#f687b3;
+    --text:#e2e8f0; --muted:#64748b; --sub:#94a3b8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; padding:20px 24px; max-width:1400px; margin:0 auto; }
+  .section-title { font-size:0.65rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; }
+  .card2 { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:14px; }
+  .tag { display:inline-block; padding:2px 8px; border-radius:20px; font-size:0.62rem; font-weight:700; letter-spacing:0.04em; }
+  .tag-purple { background:rgba(124,92,252,0.18); color:#a78bfa; }
+  .tag-teal { background:rgba(79,209,197,0.15); color:#4fd1c5; }
+  .tag-orange { background:rgba(246,166,35,0.15); color:#f6a623; }
+  .tag-red { background:rgba(245,101,101,0.15); color:#f56565; }
+  .tag-green { background:rgba(72,187,120,0.15); color:#48bb78; }
+  .tag-yellow { background:rgba(236,201,75,0.15); color:#ecc94b; }
+  .tag-pink { background:rgba(246,135,179,0.15); color:#f687b3; }
+  .tag-blue { background:rgba(99,179,237,0.15); color:#63b3ed; }
+  .divider { height:1px; background:var(--border); margin:10px 0; }
+  .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px; }
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:20px; }
+  @media(max-width:1100px){ .grid-4{grid-template-columns:repeat(2,1fr);} .grid-3{grid-template-columns:1fr 1fr;} }
+  @media(max-width:700px){ .grid-4,.grid-2,.grid-3{grid-template-columns:1fr;} }
+  .signal-icon { font-size:1.6rem; margin-bottom:8px; }
+  .signal-label { font-size:0.6rem; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px; }
+  .signal-title { font-size:0.95rem; font-weight:800; line-height:1.3; margin-bottom:8px; color:var(--text); }
+  .signal-body { font-size:0.78rem; color:var(--sub); line-height:1.5; margin-bottom:10px; }
+  .for-us { font-size:0.75rem; line-height:1.4; padding:8px 10px; border-radius:8px; border-left:3px solid var(--accent); background:rgba(124,92,252,0.08); color:#c4b5fd; }
+  .tool-item { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid var(--border); }
+  .tool-item:last-child { border-bottom:none; }
+  .tool-num { width:22px; height:22px; min-width:22px; border-radius:6px; background:rgba(124,92,252,0.18); color:#a78bfa; font-size:0.65rem; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  .tool-name { font-size:0.85rem; font-weight:700; color:var(--text); }
+  .tool-how { font-size:0.72rem; color:var(--sub); line-height:1.4; margin-top:3px; }
+  .hustle-item { display:flex; align-items:flex-start; gap:10px; padding:9px 0; border-bottom:1px solid var(--border); }
+  .hustle-item:last-child { border-bottom:none; }
+  .hustle-emoji { font-size:1.3rem; margin-top:1px; }
+  .hustle-name { font-size:0.82rem; font-weight:700; }
+  .hustle-desc { font-size:0.71rem; color:var(--sub); line-height:1.4; margin-top:2px; }
+  .income-badge { display:inline-block; margin-top:5px; padding:2px 9px; border-radius:20px; font-size:0.62rem; font-weight:800; background:rgba(72,187,120,0.15); color:#48bb78; }
+  .hook-item { padding:10px 12px; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid var(--border); margin-bottom:8px; }
+  .hook-type { font-size:0.58rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:5px; }
+  .hook-text { font-size:0.78rem; color:var(--text); line-height:1.4; font-weight:500; }
+  .competitor-item { padding:10px 0; border-bottom:1px solid var(--border); }
+  .competitor-item:last-child { border-bottom:none; }
+  .competitor-name { font-size:0.82rem; font-weight:700; margin-bottom:3px; }
+  .competitor-desc { font-size:0.71rem; color:var(--sub); line-height:1.4; }
+  .signal-badge { display:inline-block; padding:2px 8px; border-radius:20px; font-size:0.58rem; font-weight:800; margin-top:5px; }
+  .sig-high { background:rgba(245,101,101,0.15); color:#f56565; }
+  .sig-mid { background:rgba(246,166,35,0.15); color:#f6a623; }
+  .sig-low { background:rgba(100,116,139,0.15); color:#94a3b8; }
+  .qa-item { padding:9px 0; border-bottom:1px solid var(--border); display:flex; gap:8px; align-items:flex-start; }
+  .qa-item:last-child { border-bottom:none; }
+  .qa-q { font-size:0.78rem; color:var(--text); line-height:1.4; }
+  .qa-hint { font-size:0.68rem; color:var(--muted); margin-top:2px; }
+  .pill-grid { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+  .pill { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:30px; background:var(--card2); border:1px solid var(--border); font-size:0.75rem; font-weight:600; color:var(--text); }
+  .pill-badge { font-size:0.55rem; font-weight:800; padding:2px 6px; border-radius:10px; }
+  .pb-new { background:rgba(79,209,197,0.2); color:#4fd1c5; }
+  .pb-upgrade { background:rgba(124,92,252,0.2); color:#a78bfa; }
+  .pb-trend { background:rgba(246,166,35,0.2); color:#f6a623; }
+  .pb-soon { background:rgba(246,135,179,0.2); color:#f687b3; }
+  .product-insight { background:rgba(124,92,252,0.08); border:1px solid rgba(124,92,252,0.25); border-radius:8px; padding:12px; margin-top:12px; }
+  .pi-title { font-size:0.62rem; font-weight:800; color:#a78bfa; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px; }
+  .pi-text { font-size:0.75rem; color:#c4b5fd; line-height:1.5; }
+  .section-block { margin-bottom:20px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid #1e1e30;">
+  <div>
+    <div style="font-size:1.15rem;font-weight:900;background:linear-gradient(135deg,#a78bfa,#4fd1c5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">⚡ Jobescape · AI Brief</div>
+    <div style="font-size:0.72rem;color:#64748b;margin-top:2px;">Для продуктовой и маркетинговой команды</div>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center;">
+    <div style="background:#141420;border:1px solid #1e1e30;padding:5px 14px;border-radius:20px;font-size:0.72rem;color:#94a3b8;font-weight:600;">Пятница</div>
+    <div style="background:linear-gradient(135deg,rgba(124,92,252,0.2),rgba(79,209,197,0.2));border:1px solid rgba(124,92,252,0.3);padding:5px 14px;border-radius:20px;font-size:0.72rem;color:#a78bfa;font-weight:700;">2026-04-25</div>
+  </div>
+</div>
+
+<!-- SECTION 1: СИГНАЛЫ ДНЯ -->
+<div class="section-block">
+  <div class="section-title">🔥 Сигналы дня</div>
+  <div class="grid-4">
+
+    <!-- Card 1: Главный инсайт -->
+    <div class="card">
+      <div class="signal-icon">🎨</div>
+      <div class="signal-label">Главный инсайт</div>
+      <div class="signal-title">Claude Design: лендинг словами — без Figma</div>
+      <div class="signal-body">Anthropic выпустила Claude Design — описываешь питч-дек, лендинг или прототип обычными словами, получаешь рабочий черновик. Правки — через разговор и встроенный редактор. Дизайн без дизайнера.</div>
+      <div class="for-us">→ Это точно стоит стать уроком №1 на этой неделе. «Сделай лендинг за 7 минут — без Figma» — это контент, который сольётся.</div>
+    </div>
+
+    <!-- Card 2: Вирусный момент -->
+    <div class="card">
+      <div class="signal-icon">🚀</div>
+      <div class="signal-label">Вирусный момент</div>
+      <div class="signal-title">GPT-5.5 уже у всех платников — сам планирует и исправляет себя</div>
+      <div class="signal-body">OpenAI запустила GPT-5.5 для Plus, Pro, Business и Enterprise. Новая фишка: модель сама раскладывает задачу на шаги, берёт инструменты, потом проверяет результат до того, как отдать его тебе.</div>
+      <div class="for-us">→ «GPT-5.5 vs GPT-5 — что изменилось?» — горячий образовательный формат прямо сейчас, пока народ разбирается.</div>
+    </div>
+
+    <!-- Card 3: Барьер аудитории -->
+    <div class="card">
+      <div class="signal-icon">🇨🇳</div>
+      <div class="signal-label">Барьер аудитории</div>
+      <div class="signal-title">DeepSeek V4 вышел — зачем платить, если есть бесплатный?</div>
+      <div class="signal-body">Китайский стартап выпустил DeepSeek V4-Pro (мощный) и V4-Flash (быстрый и дешёвый). Вопрос «зачем платить за ChatGPT» снова в топе — и это прямой барьер для монетизации аудитории Jobescape.</div>
+      <div class="for-us">→ Нужен контент: «DeepSeek V4 vs ChatGPT — честное сравнение». Закрывает возражение и показывает нашу экспертизу.</div>
+    </div>
+
+    <!-- Card 4: Тренд -->
+    <div class="card">
+      <div class="signal-icon">🗂️</div>
+      <div class="signal-label">Тренд</div>
+      <div class="signal-title">Google Workspace Intelligence: Gemini видит весь твой Google сразу</div>
+      <div class="signal-body">Google запустила Workspace Intelligence — Gemini теперь читает Gmail, Docs, Sheets, Slides и Drive вместе и видит связи между ними. Задаёшь вопрос — получаешь ответ из всего рабочего пространства.</div>
+      <div class="for-us">→ Для Jobescape: урок «Автоматизируй работу в Google за 30 минут с Gemini» актуальнее, чем когда-либо. Аудитория это использует каждый день.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 2: ЧТО УЧИТЬ + SIDE HUSTLE -->
+<div class="section-block">
+  <div class="grid-2">
+
+    <!-- Left: ЧТО УЧИТЬ СЕГОДНЯ -->
+    <div class="card">
+      <div class="section-title">📚 Что учить сегодня</div>
+
+      <div class="tool-item">
+        <div class="tool-num">1</div>
+        <div>
+          <div class="tool-name">Claude Design — питч-дек из промпта</div>
+          <div class="tool-how">Урок: «Опиши бизнес-идею — получи готовый питч». Показываем сравнение: 2 часа в Figma vs 8 минут в Claude Design. Акцент на фрилансерах и предпринимателях.</div>
+          <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="tag tag-green">🟢 Уровень: начинающий</span>
+            <span class="tag tag-orange">💰 Монетизация: фриланс, стартапы</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-item">
+        <div class="tool-num">2</div>
+        <div>
+          <div class="tool-name">GPT-5.5 — агентные цепочки без кода</div>
+          <div class="tool-how">Урок: «Дай GPT-5.5 сложную задачу и не трогай — он сам разобьёт на шаги». Показываем реальный пример: исследование рынка или написание контент-плана на месяц.</div>
+          <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="tag tag-yellow">🟡 Уровень: средний</span>
+            <span class="tag tag-orange">💰 Монетизация: продуктивность, продажи</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-item">
+        <div class="tool-num">3</div>
+        <div>
+          <div class="tool-name">Google Workspace Intelligence — умный поиск по всему Google</div>
+          <div class="tool-how">Урок: «Задай вопрос Gemini — он найдёт ответ в твоих письмах, таблицах и доках». Демонстрация: найти договор, не помня его названия.</div>
+          <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="tag tag-green">🟢 Уровень: начинающий</span>
+            <span class="tag tag-purple">💼 Монетизация: офис, малый бизнес</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-item">
+        <div class="tool-num">4</div>
+        <div>
+          <div class="tool-name">Meta AI Ad Assistant — реклама без агентства</div>
+          <div class="tool-how">Урок: «Запусти рекламу в Instagram за 10 минут через AI». Meta открыла ассистента для всех стран. Малый бизнес и фрилансеры — идеальная аудитория урока.</div>
+          <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="tag tag-green">🟢 Уровень: начинающий</span>
+            <span class="tag tag-orange">💰 Монетизация: реклама, SMM-услуги</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right: SIDE HUSTLE СИГНАЛЫ -->
+    <div class="card">
+      <div class="section-title">💰 Side Hustle сигналы</div>
+
+      <div class="hustle-item">
+        <div class="hustle-emoji">✍️</div>
+        <div>
+          <div class="hustle-name">LinkedIn Ghostwriting с AI</div>
+          <div class="hustle-desc">Пишешь посты для CEO и основателей через ChatGPT/Claude. Спрос взлетел — топ-менеджеры хотят присутствие, но не умеют/не хотят писать.</div>
+          <div><span class="income-badge">$200–500/час</span></div>
+        </div>
+      </div>
+
+      <div class="hustle-item">
+        <div class="hustle-emoji">🎨</div>
+        <div>
+          <div class="hustle-name">Claude Design фрилансер</div>
+          <div class="hustle-desc">Создаёшь лендинги и питч-деки для стартапов за 20–40 минут вместо двух дней. Цена та же, что у дизайнера — маржа в 10 раз выше.</div>
+          <div><span class="income-badge">$300–800/проект</span></div>
+        </div>
+      </div>
+
+      <div class="hustle-item">
+        <div class="hustle-emoji">📢</div>
+        <div>
+          <div class="hustle-name">AI-реклама для малого бизнеса</div>
+          <div class="hustle-desc">Настраиваешь Meta AI Ad Assistant для локального бизнеса. Большинство предпринимателей не знают, что это теперь работает само. Ты — посредник с ценностью.</div>
+          <div><span class="income-badge">$500–2000/клиент</span></div>
+        </div>
+      </div>
+
+      <div class="hustle-item">
+        <div class="hustle-emoji">📝</div>
+        <div>
+          <div class="hustle-name">Специализированный AI-контент</div>
+          <div class="hustle-desc">Контент для fintech, healthcare, B2B SaaS с AI-помощью. Специализация даёт ставку в 2–5 раз выше дженерик-авторов. Барьер входа — освоить нишу + промпты.</div>
+          <div><span class="income-badge">$80–200/статья</span></div>
+        </div>
+      </div>
+
+      <div class="hustle-item">
+        <div class="hustle-emoji">🤖</div>
+        <div>
+          <div class="hustle-name">GPT-5.5 Codex — разработка без кода</div>
+          <div class="hustle-desc">Codex на базе GPT-5.5 пишет и запускает код для микро-задач бизнеса. Фрилансер продаёт «маленькие автоматизации» — скрипт для Excel, бот для Telegram, парсер.</div>
+          <div><span class="income-badge">$100–400/задача</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: КОНТЕНТ-ХУКИ / КОНКУРЕНТЫ / АУДИТОРИЯ -->
+<div class="section-block">
+  <div class="grid-3">
+
+    <!-- Col 1: КОНТЕНТ-ХУКИ -->
+    <div class="card">
+      <div class="section-title">🎯 Контент-хуки</div>
+
+      <div class="hook-item">
+        <div class="hook-type" style="color:#f6a623;">🔥 Максимальный охват</div>
+        <div class="hook-text">«Я сделал лендинг за 7 минут разговором с Claude. Без Figma. Без дизайнера. Без кода. Вот как:»</div>
+      </div>
+
+      <div class="hook-item">
+        <div class="hook-type" style="color:#63b3ed;">📘 Образовательный</div>
+        <div class="hook-text">«GPT-5.5 вышел вчера. Вот 3 вещи, которые он теперь умеет — а GPT-5 не мог: [список]. Какая из них меняет твою работу?»</div>
+      </div>
+
+      <div class="hook-item">
+        <div class="hook-type" style="color:#f687b3;">🦠 Вирусный</div>
+        <div class="hook-text">«Эта фрилансерша зарабатывает $4000 в месяц — пишет посты для CEO в LinkedIn за 20 минут с ChatGPT. Её клиенты думают, что у неё команда.»</div>
+      </div>
+
+      <div class="hook-item">
+        <div class="hook-type" style="color:#f56565;">😨 Закрытие страха</div>
+        <div class="hook-text">«Ты до сих пор сам пишешь рекламные тексты для Meta? В 2026 году AI делает это за тебя — и открылось для всех стран. Покажу как за 10 минут.»</div>
+      </div>
+
+      <div class="hook-item" style="margin-bottom:0;">
+        <div class="hook-type" style="color:#48bb78;">✨ Инспирейшн</div>
+        <div class="hook-text">«DeepSeek V4 вышел. Китайский AI улучшается каждые 3 месяца. Пока все спорят кто лучше — победитель тот, кто уже использует оба.»</div>
+      </div>
+    </div>
+
+    <!-- Col 2: КОНКУРЕНТЫ -->
+    <div class="card">
+      <div class="section-title">🏁 Конкуренты</div>
+
+      <div class="competitor-item">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div class="competitor-name">Google AI Educator Series</div>
+          <span class="signal-badge sig-high">🔴 Высокий сигнал</span>
+        </div>
+        <div class="competitor-desc">Старт 13 мая 2026 — Google запускает серию обучающих AI-модулей для учителей с ежемесячными обновлениями. Прямой конкурент Jobescape в EdTech-сегменте.</div>
+        <div style="font-size:0.68rem;color:#f56565;margin-top:5px;">→ У нас есть 2,5 недели, чтобы первыми застолбить аудиторию «AI для образования».</div>
+      </div>
+
+      <div class="competitor-item">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div class="competitor-name">D2L Brightspace + Lumi AI</div>
+          <span class="signal-badge sig-mid">🟡 Средний сигнал</span>
+        </div>
+        <div class="competitor-desc">Rasmussen University заменяет Blackboard на D2L Brightspace с AI-инструментами Lumi: персонализированные рекомендации, AI-тьютор, AI-фидбек. Тренд на AI-native LMS ускоряется.</div>
+        <div style="font-size:0.68rem;color:#f6a623;margin-top:5px;">→ Сигнал: корпоративное образование переходит на AI — наша аудитория чувствует это давление.</div>
+      </div>
+
+      <div class="competitor-item">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div class="competitor-name">OpenAI Codex в ChatGPT</div>
+          <span class="signal-badge sig-mid">🟡 Средний сигнал</span>
+        </div>
+        <div class="competitor-desc">С GPT-5.5 Codex встроен прямо в ChatGPT для платников. Порог входа в «AI-разработку» снизился до нуля. Наша аудитория может учиться кодить без кода.</div>
+        <div style="font-size:0.68rem;color:#f6a623;margin-top:5px;">→ Возможность: урок «Первый скрипт за 15 минут — без опыта программирования».</div>
+      </div>
+
+      <div class="competitor-item" style="border:none;padding-bottom:0;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div class="competitor-name">Meta Vibes (AI-соцсеть)</div>
+          <span class="signal-badge sig-low">⚪ Мониторинг</span>
+        </div>
+        <div class="competitor-desc">Meta тестирует Vibes — AI-only социальную сеть. Пока ранняя стадия, но если взлетит — изменит правила контент-игры для Jobescape и наших учеников.</div>
+      </div>
+    </div>
+
+    <!-- Col 3: ЧТО СПРАШИВАЕТ АУДИТОРИЯ -->
+    <div class="card">
+      <div class="section-title">💬 Что спрашивает аудитория</div>
+
+      <div class="qa-item">
+        <div style="font-size:1rem;margin-top:2px;">🤔</div>
+        <div>
+          <div class="qa-q">«GPT-5.5 вышел — чем он лучше GPT-5? Стоит ли переходить прямо сейчас?»</div>
+          <div class="qa-hint">Топ-вопрос после каждого релиза. Простое сравнение «до/после» на реальной задаче — отвечает напрямую.</div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div style="font-size:1rem;margin-top:2px;">🎨</div>
+        <div>
+          <div class="qa-q">«Claude Design — это замена Figma или Canva?»</div>
+          <div class="qa-hint">Люди не понимают разницу. Объяснение в одном видео «Claude Design vs Canva vs Figma — когда что» убирает путаницу и строит доверие.</div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div style="font-size:1rem;margin-top:2px;">🇨🇳</div>
+        <div>
+          <div class="qa-q">«DeepSeek бесплатный и сильный — зачем тогда платить $20/мес за ChatGPT?»</div>
+          <div class="qa-hint">Главное возражение против монетизации. Нужен честный контент: «Когда DeepSeek, а когда ChatGPT — мой выбор».</div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div style="font-size:1rem;margin-top:2px;">💸</div>
+        <div>
+          <div class="qa-q">«Реально ли зарабатывать на LinkedIn ghostwriting с AI? Это не нишево?»</div>
+          <div class="qa-hint">Аудитория сомневается. Кейс реального человека с цифрами — лучший ответ. Если есть в базе учеников — рассказать его историю.</div>
+        </div>
+      </div>
+
+      <div class="product-insight">
+        <div class="pi-title">💡 Продуктовый инсайт</div>
+        <div class="pi-text">Вопрос «зачем платить за ChatGPT, если есть бесплатный DeepSeek» — системный. Jobescape нужен постоянный контент-блок «AI-сравнения» как защита от оттока. Это и образование, и удержание.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 4: ИНСТРУМЕНТЫ ДНЯ -->
+<div class="section-block">
+  <div class="card">
+    <div class="section-title">🛠 Инструменты дня — 25 апреля 2026</div>
+    <div class="pill-grid">
+      <div class="pill">GPT-5.5 <span class="pill-badge pb-upgrade">UPGRADE</span></div>
+      <div class="pill">Claude Design <span class="pill-badge pb-new">NEW</span></div>
+      <div class="pill">DeepSeek V4-Pro <span class="pill-badge pb-new">NEW</span></div>
+      <div class="pill">DeepSeek V4-Flash <span class="pill-badge pb-new">NEW</span></div>
+      <div class="pill">Google Workspace Intelligence <span class="pill-badge pb-upgrade">UPGRADE</span></div>
+      <div class="pill">Meta AI Ad Assistant <span class="pill-badge pb-upgrade">UPGRADE</span></div>
+      <div class="pill">Grok Coding Agent <span class="pill-badge pb-soon">СКОРО</span></div>
+      <div class="pill">D2L Lumi AI Tutor <span class="pill-badge pb-new">NEW</span></div>
+      <div class="pill">Google Gemini 3.1 Flash-Lite <span class="pill-badge pb-new">NEW</span></div>
+      <div class="pill">Google Earth AI Ads (WPP) <span class="pill-badge pb-trend">ТРЕНД</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="margin-top:20px;padding-top:14px;border-top:1px solid #1e1e30;font-size:0.68rem;color:#64748b;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;">
+  <div>Jobescape · AI Daily Brief · 2026-04-25 · Только новости за вчера</div>
+  <div>Источники: CNBC · Bloomberg · TechCrunch · llm-stats.com · theaimarketers.ai · launchaijam.com</div>
+</div>
+
+</body>
+</html>
