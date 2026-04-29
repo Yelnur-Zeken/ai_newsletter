@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobescape · AI Brief · 2026-04-28</title>
+<style>
+  :root {
+    --bg:#08080f; --card:#0f0f1a; --card2:#141420; --border:#1e1e30;
+    --accent:#7c5cfc; --teal:#4fd1c5; --orange:#f6a623; --red:#f56565;
+    --green:#48bb78; --yellow:#ecc94b; --pink:#f687b3;
+    --text:#e2e8f0; --muted:#64748b; --sub:#94a3b8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; padding:24px; max-width:1400px; margin:0 auto; }
+  .section-title { font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; }
+  .card2 { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:14px; }
+  .tag { display:inline-block; font-size:0.6rem; font-weight:700; padding:2px 8px; border-radius:20px; letter-spacing:0.05em; text-transform:uppercase; }
+  .tag-accent { background:rgba(124,92,252,0.18); color:#a78bfa; }
+  .tag-teal { background:rgba(79,209,197,0.15); color:#4fd1c5; }
+  .tag-orange { background:rgba(246,166,35,0.15); color:#f6a623; }
+  .tag-green { background:rgba(72,187,120,0.15); color:#48bb78; }
+  .tag-red { background:rgba(245,101,101,0.15); color:#f56565; }
+  .tag-pink { background:rgba(246,135,179,0.15); color:#f687b3; }
+  .tag-yellow { background:rgba(236,201,75,0.15); color:#ecc94b; }
+  .tag-muted { background:rgba(100,116,139,0.15); color:#94a3b8; }
+  .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:24px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:24px; }
+  .grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:24px; }
+  .insight-label { font-size:0.58rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:6px; }
+  .insight-text { font-size:0.88rem; font-weight:600; color:var(--text); line-height:1.45; margin-bottom:10px; }
+  .insight-action { font-size:0.72rem; color:#a78bfa; line-height:1.4; border-top:1px solid var(--border); padding-top:8px; margin-top:auto; }
+  .signal-card { display:flex; flex-direction:column; height:100%; }
+  .tool-item { display:flex; flex-direction:column; gap:6px; padding:12px 0; border-bottom:1px solid var(--border); }
+  .tool-item:last-child { border-bottom:none; }
+  .tool-name { font-size:0.85rem; font-weight:700; color:var(--text); }
+  .tool-desc { font-size:0.73rem; color:var(--sub); line-height:1.45; }
+  .hustle-item { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid var(--border); }
+  .hustle-item:last-child { border-bottom:none; }
+  .hustle-emoji { font-size:1.2rem; flex-shrink:0; margin-top:1px; }
+  .hustle-body { flex:1; }
+  .hustle-name { font-size:0.82rem; font-weight:700; color:var(--text); margin-bottom:3px; }
+  .hustle-desc { font-size:0.71rem; color:var(--sub); line-height:1.4; }
+  .income-badge { display:inline-block; margin-top:5px; font-size:0.62rem; font-weight:700; padding:2px 9px; border-radius:20px; background:rgba(72,187,120,0.15); color:#48bb78; }
+  .hook-item { padding:10px 12px; border-radius:8px; background:var(--card2); border:1px solid var(--border); margin-bottom:8px; }
+  .hook-label { font-size:0.58rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px; }
+  .hook-text { font-size:0.78rem; color:var(--text); line-height:1.4; font-weight:500; }
+  .competitor-item { padding:10px 0; border-bottom:1px solid var(--border); }
+  .competitor-item:last-child { border-bottom:none; }
+  .competitor-name { font-size:0.82rem; font-weight:700; color:var(--text); margin-bottom:3px; display:flex; align-items:center; gap:8px; }
+  .competitor-desc { font-size:0.71rem; color:var(--sub); line-height:1.4; }
+  .signal-badge { font-size:0.58rem; font-weight:700; padding:2px 7px; border-radius:10px; }
+  .signal-high { background:rgba(245,101,101,0.15); color:#f56565; }
+  .signal-med { background:rgba(246,166,35,0.15); color:#f6a623; }
+  .signal-low { background:rgba(100,116,139,0.2); color:#94a3b8; }
+  .question-item { padding:9px 0; border-bottom:1px solid var(--border); display:flex; gap:8px; align-items:flex-start; }
+  .question-item:last-child { border-bottom:none; }
+  .question-icon { color:var(--muted); font-size:0.75rem; flex-shrink:0; margin-top:2px; }
+  .question-text { font-size:0.75rem; color:var(--sub); line-height:1.4; }
+  .product-insight { background:rgba(124,92,252,0.08); border:1px solid rgba(124,92,252,0.25); border-radius:8px; padding:12px; margin-top:12px; }
+  .product-insight-title { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#a78bfa; margin-bottom:6px; }
+  .product-insight-text { font-size:0.73rem; color:var(--sub); line-height:1.45; }
+  .pill-grid { display:flex; flex-wrap:wrap; gap:10px; }
+  .pill { display:inline-flex; align-items:center; gap:8px; background:var(--card); border:1px solid var(--border); border-radius:30px; padding:8px 16px; }
+  .pill-name { font-size:0.78rem; font-weight:600; color:var(--text); }
+  .pill-badge { font-size:0.58rem; font-weight:700; padding:2px 7px; border-radius:10px; }
+  .badge-new { background:rgba(79,209,197,0.18); color:#4fd1c5; }
+  .badge-upgrade { background:rgba(124,92,252,0.18); color:#a78bfa; }
+  .badge-trend { background:rgba(246,166,35,0.18); color:#f6a623; }
+  @media(max-width:900px){
+    .grid4{grid-template-columns:1fr 1fr;}
+    .grid3{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:600px){
+    .grid4,.grid2,.grid3{grid-template-columns:1fr;}
+    body{padding:14px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid #1e1e30;">
+  <div>
+    <div style="font-size:1.15rem;font-weight:900;background:linear-gradient(135deg,#a78bfa,#4fd1c5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:3px;">⚡ Jobescape · AI Brief</div>
+    <div style="font-size:0.72rem;color:#64748b;">Для продуктовой и маркетинговой команды</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div style="background:#141420;border:1px solid #1e1e30;padding:6px 14px;border-radius:20px;font-size:0.75rem;color:#94a3b8;font-weight:600;">28 апреля 2026</div>
+    <div style="background:rgba(72,187,120,0.12);border:1px solid rgba(72,187,120,0.25);padding:6px 12px;border-radius:20px;font-size:0.7rem;color:#48bb78;font-weight:700;">● LIVE</div>
+  </div>
+</div>
+
+<!-- SECTION 1: СИГНАЛЫ ДНЯ -->
+<div class="section-title">🔥 Сигналы дня</div>
+<div class="grid4">
+
+  <div class="card signal-card">
+    <div class="insight-label" style="color:#a78bfa;">⚡ Главный инсайт</div>
+    <div class="insight-text">Google Gemini теперь встроен в миллионы автомобилей GM — Chevrolet, Cadillac, Buick, GMC (модели 2022+)</div>
+    <div style="font-size:0.71rem;color:var(--sub);line-height:1.45;margin-bottom:10px;">Водители могут разговаривать с ИИ естественным языком, задавать уточняющие вопросы, менять маршрут и развлечения в одном диалоге. Обновление придёт по воздуху — без похода к дилеру.</div>
+    <div class="insight-action">→ ИИ-помощники уходят с экранов телефонов в физическую жизнь. Следующий шаг — обучать людей работать с голосовыми ИИ-агентами</div>
+  </div>
+
+  <div class="card signal-card">
+    <div class="insight-label" style="color:#4fd1c5;">🌊 Вирусный момент</div>
+    <div class="insight-text">Рынок ИИ в соцсетях вырастет с $2.2B до $10.33B к 2029 году — CAGR 36.2%</div>
+    <div style="font-size:0.71rem;color:var(--sub);line-height:1.45;margin-bottom:10px;">Исследование опубликовано 28 апреля. Главные драйверы: автоматизация контента, таргетинг, персонализация и создание рекламы с ИИ. SMM-специалисты без ИИ-навыков теряют конкурентоспособность.</div>
+    <div class="insight-action">→ Контент-хук: «Каждый SMM-специалист, который не освоит ИИ в 2026 году, потеряет работу в 2027-м»</div>
+  </div>
+
+  <div class="card signal-card">
+    <div class="insight-label" style="color:#f56565;">🧱 Барьер аудитории</div>
+    <div class="insight-text">OpenAI открыл программу «красной команды» для тестирования GPT-5.5 — работает до 27 июля</div>
+    <div style="font-size:0.71rem;color:var(--sub);line-height:1.45;margin-bottom:10px;">Только для специалистов по безопасности. Аудитория Jobescape видит это и думает: «ИИ опасен / нестабилен». Страх перед ненадёжностью ИИ-инструментов — реальный барьер входа.</div>
+    <div class="insight-action">→ Ответить на страх: сделать урок «Как проверить ИИ-инструмент перед использованием — 5 простых тестов»</div>
+  </div>
+
+  <div class="card signal-card">
+    <div class="insight-label" style="color:#f6a623;">📈 Тренд недели</div>
+    <div class="insight-text">Anthropic расширяется в APAC: офис в Сиднее + партнёрства с Canva и Xero</div>
+    <div style="font-size:0.71rem;color:var(--sub);line-height:1.45;margin-bottom:10px;">27 апреля открыт сиднейский офис, назначен GM для ANZ. Claude теперь глубоко интегрирован в Canva Design Engine и облачную бухгалтерию Xero — миллионы обычных пользователей получили доступ к ИИ через знакомые приложения.</div>
+    <div class="insight-action">→ Canva + Claude — идеальная точка входа для аудитории Jobescape. Урок «Дизайн с ИИ для не-дизайнеров» будет бить рекорды</div>
+  </div>
+
+</div>
+
+<!-- SECTION 2: ЧТО УЧИТЬ + SIDE HUSTLE -->
+<div class="grid2">
+
+  <!-- LEFT: ЧТО УЧИТЬ -->
+  <div class="card">
+    <div class="section-title">📚 Что учить сегодня</div>
+
+    <div class="tool-item">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="tool-name">1. Canva + Claude: дизайн без дизайнера</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;">
+          <span class="tag tag-green">⭐ Лёгкий</span>
+          <span class="tag tag-teal">💰 Фриланс</span>
+        </div>
+      </div>
+      <div class="tool-desc">Canva Design Engine теперь работает на Claude. Учим создавать сторисы, баннеры, презентации голосом и текстом — без Photoshop и навыков дизайна. Огромный спрос от малого бизнеса.</div>
+    </div>
+
+    <div class="tool-item">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="tool-name">2. Claude Memory Agents: ИИ-помощник с памятью</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;">
+          <span class="tag tag-orange">⚙️ Средний</span>
+          <span class="tag tag-accent">🤖 Автоматизация</span>
+        </div>
+      </div>
+      <div class="tool-desc">Anthropic выпустил публичную бету Claude Managed Agents с персистентной памятью — агент запоминает предпочтения и историю между сессиями. Netflix и Rakuten уже снизили ошибки на 97%. Учим строить персональных ИИ-агентов для бизнеса.</div>
+    </div>
+
+    <div class="tool-item">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="tool-name">3. AI Video Generator: реклама за 60 секунд</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;">
+          <span class="tag tag-green">⭐ Лёгкий</span>
+          <span class="tag tag-orange">🛒 E-commerce</span>
+        </div>
+      </div>
+      <div class="tool-desc">Amazon Ads AI Video Generator вышел в Австралии + Zendrop запустил AI Ad Generator beta для дропшипперов. Из одной фото товара — 6 видеовариантов рекламы. Фрилансеры берут $300-800 за такие видео.</div>
+    </div>
+
+    <div class="tool-item">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="tool-name">4. AI для юридических документов и бухгалтерии</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;">
+          <span class="tag tag-orange">⚙️ Средний</span>
+          <span class="tag tag-green">💼 B2B</span>
+        </div>
+      </div>
+      <div class="tool-desc">Manifest OS поднял $60M Series A на автоматизацию юридических документов ИИ. Xero интегрировал Claude в облачную бухгалтерию. Навык «AI для документооборота» открывает B2B-рынок с высокими чеками ($100-300/час).</div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: SIDE HUSTLE -->
+  <div class="card">
+    <div class="section-title">💰 Side hustle сигналы</div>
+
+    <div class="hustle-item">
+      <div class="hustle-emoji">🎨</div>
+      <div class="hustle-body">
+        <div class="hustle-name">Canva + Claude дизайн-сервис</div>
+        <div class="hustle-desc">Создание брендбуков, постов, презентаций для малого бизнеса через Canva + Claude. Спрос резко вырос после интеграции — клиенты платят за результат, не за часы.</div>
+        <span class="income-badge">$500–2 000/мес</span>
+      </div>
+    </div>
+
+    <div class="hustle-item">
+      <div class="hustle-emoji">🎬</div>
+      <div class="hustle-body">
+        <div class="hustle-name">AI-видео реклама для e-commerce</div>
+        <div class="hustle-desc">Берёшь фото продукта, Zendrop/Amazon AI Video Generator делает 6 версий UGC-видео, продаёшь дропшипперам и интернет-магазинам. Никаких актёров — только промпт.</div>
+        <span class="income-badge">$300–800/видео</span>
+      </div>
+    </div>
+
+    <div class="hustle-item">
+      <div class="hustle-emoji">🤖</div>
+      <div class="hustle-body">
+        <div class="hustle-name">Сборка Claude Memory Agents для бизнеса</div>
+        <div class="hustle-desc">Настройка персистентных ИИ-агентов для клиентского сервиса, HR и операций. Claude Memory API в публичной бете — инструмент доступен прямо сейчас.</div>
+        <span class="income-badge">$500–1 500/бот</span>
+      </div>
+    </div>
+
+    <div class="hustle-item">
+      <div class="hustle-emoji">📋</div>
+      <div class="hustle-body">
+        <div class="hustle-name">AI-автоматизация документов для юристов и бухгалтеров</div>
+        <div class="hustle-desc">Manifest OS ($60M) показал: рынок горячий. Помогай малому бизнесу настраивать Xero + Claude или Notion AI для документооборота. Высокий чек, низкая конкуренция среди фрилансеров.</div>
+        <span class="income-badge">$100–300/час</span>
+      </div>
+    </div>
+
+    <div class="hustle-item">
+      <div class="hustle-emoji">🌏</div>
+      <div class="hustle-body">
+        <div class="hustle-name">ИИ-локализация контента для APAC-рынков</div>
+        <div class="hustle-desc">Anthropic открыл офис в Сиднее + Seoul и Bengaluru. Бизнесы в APAC активно ищут людей, умеющих адаптировать ИИ-инструменты под местный рынок и язык.</div>
+        <span class="income-badge">$800–2 500/проект</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 3: КОНТЕНТ + КОНКУРЕНТЫ + АУДИТОРИЯ -->
+<div class="grid3">
+
+  <!-- КОНТЕНТ-ХУКИ -->
+  <div class="card">
+    <div class="section-title">✍️ Контент-хуки</div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#f56565;">🔥 Максимальный охват</div>
+      <div class="hook-text">«Твоя машина теперь умнее среднестатистического офисного работника — и это только начало»</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#f687b3;">🦠 Вирусный</div>
+      <div class="hook-text">«Рынок ИИ в соцсетях вырастет в 4,7 раза за 3 года. SMM без ИИ в 2029 году — как печатная машинка в 2010-м»</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#4fd1c5;">📖 Образовательный</div>
+      <div class="hook-text">«Claude теперь помнит всё: как настроить ИИ-агента с памятью и продавать его бизнесам — гайд за 5 минут»</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#ecc94b;">😰 Закрытие страха</div>
+      <div class="hook-text">«"ИИ нестабилен и опасен" — объясняем, как за 5 минут проверить любой инструмент прежде чем доверить ему своё время и деньги»</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#a78bfa;">✨ Инспирейшн</div>
+      <div class="hook-text">«Девочка из Almaty взяла Canva + Claude и зарабатывает $1 500/мес создавая дизайн для австралийских стартапов. Вот её стек»</div>
+    </div>
+
+  </div>
+
+  <!-- КОНКУРЕНТЫ -->
+  <div class="card">
+    <div class="section-title">🕵️ Конкуренты</div>
+
+    <div class="competitor-item">
+      <div class="competitor-name">
+        Duolingo
+        <span class="signal-badge signal-high">🔴 Высокий</span>
+      </div>
+      <div class="competitor-desc">По-прежнему лидер EdTech с 50M DAU и $1B выручкой. В апреле 2026 признан #1 Top EdTech по версии Time Magazine. ИИ-уроки и адаптивный алгоритм — главное оружие. <strong style="color:#f56565;">Риск:</strong> если выйдут в AI side hustle — заберут нашу аудиторию.</div>
+    </div>
+
+    <div class="competitor-item">
+      <div class="competitor-name">
+        Google AI Educator Series
+        <span class="signal-badge signal-high">🔴 Высокий</span>
+      </div>
+      <div class="competitor-desc">Запуск 13 мая 2026 — ежемесячные бесплатные AI-модули для педагогов и пользователей. Бесплатно + бренд Google = серьёзная угроза. <strong style="color:#f6a623;">Ответ:</strong> ускориться с практическими «зарабатывающими» уроками, которых у Google нет.</div>
+    </div>
+
+    <div class="competitor-item">
+      <div class="competitor-name">
+        D2L Brightspace Lumi
+        <span class="signal-badge signal-med">🟡 Средний</span>
+      </div>
+      <div class="competitor-desc">Развернулся в Rasmussen University — AI-тьютор, адаптивные рекомендации, аналитика. Работает через вузы (B2B), Jobescape — прямо к пользователю (B2C). Пока разные рынки, но следим.</div>
+    </div>
+
+    <div class="competitor-item">
+      <div class="competitor-name">
+        EduGenius / AI Learning Startups
+        <span class="signal-badge signal-low">⚫ Низкий</span>
+      </div>
+      <div class="competitor-desc">В мире 2 800+ AI EdTech стартапов, отрасль получила $4.2B венчурных денег в 2025. Большинство фокусируются на K-12 или корпоративном обучении. Ниша «зарабатывай с ИИ» по-прежнему свободна.</div>
+    </div>
+
+  </div>
+
+  <!-- АУДИТОРИЯ -->
+  <div class="card">
+    <div class="section-title">💬 Что спрашивает аудитория</div>
+
+    <div class="question-item">
+      <div class="question-icon">❓</div>
+      <div class="question-text">«Я не программист — могу ли я вообще зарабатывать с ИИ или это только для технарей?»</div>
+    </div>
+    <div class="question-item">
+      <div class="question-icon">❓</div>
+      <div class="question-text">«Canva интегрировала Claude? Значит мой дизайнер больше не нужен — или наоборот, мне самому не нужен дизайнер?»</div>
+    </div>
+    <div class="question-item">
+      <div class="question-icon">❓</div>
+      <div class="question-text">«Claude теперь "помнит" — это значит, что ИИ станет следить за мной? Как это работает и безопасно ли?»</div>
+    </div>
+    <div class="question-item">
+      <div class="question-icon">❓</div>
+      <div class="question-text">«Сколько реально можно заработать, если начать сегодня? Не через год — прямо сейчас, в этом месяце?»</div>
+    </div>
+
+    <div class="product-insight">
+      <div class="product-insight-title">💡 Продуктовый инсайт</div>
+      <div class="product-insight-text">Самый большой барьер — <strong style="color:#a78bfa;">«Я не техарь»</strong>. Canva + Claude делают дизайн без навыков; AI Ad Generator делает рекламу из одной фотки. Нужен урок «Первые $100 с ИИ без единой строки кода» с конкретными шагами — именно это сейчас ищет аудитория.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 4: ИНСТРУМЕНТЫ ДНЯ -->
+<div class="section-title" style="margin-top:4px;">🛠️ Инструменты дня</div>
+<div class="pill-grid" style="margin-bottom:24px;">
+
+  <div class="pill">
+    <div class="pill-name">Claude Memory Agents</div>
+    <span class="pill-badge badge-new">NEW</span>
+    <span class="tag tag-teal" style="font-size:0.6rem;">Публичная бета</span>
+  </div>
+
+  <div class="pill">
+    <div class="pill-name">Zendrop AI Ad Generator</div>
+    <span class="pill-badge badge-new">NEW</span>
+    <span class="tag tag-orange" style="font-size:0.6rem;">E-commerce</span>
+  </div>
+
+  <div class="pill">
+    <div class="pill-name">Amazon Ads AI Video</div>
+    <span class="pill-badge badge-upgrade">UPGRADE</span>
+    <span class="tag tag-muted" style="font-size:0.6rem;">APAC-расширение</span>
+  </div>
+
+  <div class="pill">
+    <div class="pill-name">Canva + Claude Design Engine</div>
+    <span class="pill-badge badge-upgrade">UPGRADE</span>
+    <span class="tag tag-pink" style="font-size:0.6rem;">Партнёрство</span>
+  </div>
+
+  <div class="pill">
+    <div class="pill-name">Xero + Claude</div>
+    <span class="pill-badge badge-new">NEW</span>
+    <span class="tag tag-green" style="font-size:0.6rem;">Бухгалтерия</span>
+  </div>
+
+  <div class="pill">
+    <div class="pill-name">Google Gemini for Cars (GM)</div>
+    <span class="pill-badge badge-upgrade">UPGRADE</span>
+    <span class="tag tag-accent" style="font-size:0.6rem;">OTA-обновление</span>
+  </div>
+
+  <div class="pill">
+    <div class="pill-name">Manifest OS</div>
+    <span class="pill-badge badge-new">NEW</span>
+    <span class="tag tag-yellow" style="font-size:0.6rem;">Legal AI · $60M</span>
+  </div>
+
+  <div class="pill">
+    <div class="pill-name">ChannelSight AI Discovery</div>
+    <span class="pill-badge badge-new">NEW</span>
+    <span class="tag tag-teal" style="font-size:0.6rem;">LLM-оптимизация</span>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div style="margin-top:8px;padding-top:14px;border-top:1px solid #1e1e30;font-size:0.68rem;color:#64748b;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+  <div>Jobescape · AI Daily Brief · 28 апреля 2026</div>
+  <div>Источники: crescendo.ai · llm-stats.com · TechCrunch · CNBC · Anthropic · Google · GlobeNewswire · practicalecommerce.com</div>
+</div>
+
+</body>
+</html>
