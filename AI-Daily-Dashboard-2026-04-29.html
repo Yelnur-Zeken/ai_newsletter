@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobescape · AI Brief · 2026-04-29</title>
+<style>
+  :root {
+    --bg:#08080f; --card:#0f0f1a; --card2:#141420; --border:#1e1e30;
+    --accent:#7c5cfc; --teal:#4fd1c5; --orange:#f6a623; --red:#f56565;
+    --green:#48bb78; --yellow:#ecc94b; --pink:#f687b3;
+    --text:#e2e8f0; --muted:#64748b; --sub:#94a3b8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; padding:24px; max-width:1400px; margin:0 auto; }
+  .section-title {
+    font-size:0.65rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:12px; display:flex; align-items:center; gap:8px;
+  }
+  .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+  .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:20px; }
+  .card {
+    background:var(--card); border:1px solid var(--border); border-radius:12px;
+    padding:16px; transition:border-color .2s;
+  }
+  .card:hover { border-color:#2d2d45; }
+  .card2 { background:var(--card2); border:1px solid var(--border); border-radius:12px; padding:16px; }
+  .tag {
+    display:inline-block; font-size:0.6rem; font-weight:700; letter-spacing:0.06em;
+    text-transform:uppercase; padding:2px 8px; border-radius:20px; margin-bottom:8px;
+  }
+  .tag-purple { background:rgba(124,92,252,.18); color:#a78bfa; }
+  .tag-teal   { background:rgba(79,209,197,.15); color:#4fd1c5; }
+  .tag-orange { background:rgba(246,166,35,.15); color:#f6a623; }
+  .tag-red    { background:rgba(245,101,101,.15); color:#f56565; }
+  .tag-green  { background:rgba(72,187,120,.15); color:#48bb78; }
+  .tag-yellow { background:rgba(236,201,75,.15); color:#ecc94b; }
+  .tag-pink   { background:rgba(246,135,179,.15); color:#f687b3; }
+  .card-title { font-size:0.85rem; font-weight:700; color:var(--text); margin-bottom:6px; line-height:1.3; }
+  .card-body  { font-size:0.75rem; color:var(--sub); line-height:1.5; }
+  .insight-box {
+    margin-top:10px; padding:8px 10px; background:rgba(124,92,252,.08);
+    border-left:2px solid var(--accent); border-radius:0 6px 6px 0;
+    font-size:0.72rem; color:#c4b5fd; line-height:1.4;
+  }
+  .insight-box .label { font-size:0.6rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+  .hustle-item { display:flex; justify-content:space-between; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--border); }
+  .hustle-item:last-child { border-bottom:none; padding-bottom:0; }
+  .hustle-name { font-size:0.8rem; font-weight:700; color:var(--text); }
+  .hustle-desc { font-size:0.7rem; color:var(--sub); margin-top:2px; }
+  .income-badge {
+    font-size:0.62rem; font-weight:800; white-space:nowrap;
+    background:rgba(72,187,120,.15); color:#48bb78;
+    padding:3px 8px; border-radius:20px; margin-left:8px; flex-shrink:0;
+  }
+  .hook-item { padding:10px 0; border-bottom:1px solid var(--border); }
+  .hook-item:last-child { border-bottom:none; padding-bottom:0; }
+  .hook-label { font-size:0.58rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin-bottom:3px; }
+  .hook-text { font-size:0.78rem; color:var(--text); font-weight:600; line-height:1.3; }
+  .hook-sub  { font-size:0.68rem; color:var(--sub); margin-top:3px; line-height:1.4; }
+  .competitor-item { padding:10px 0; border-bottom:1px solid var(--border); }
+  .competitor-item:last-child { border-bottom:none; }
+  .competitor-name { font-size:0.8rem; font-weight:700; color:var(--text); display:flex; align-items:center; gap:6px; }
+  .signal-badge { font-size:0.58rem; font-weight:700; padding:2px 7px; border-radius:20px; }
+  .signal-high   { background:rgba(245,101,101,.18); color:#f56565; }
+  .signal-medium { background:rgba(246,166,35,.18); color:#f6a623; }
+  .signal-low    { background:rgba(100,116,139,.18); color:#94a3b8; }
+  .competitor-desc { font-size:0.7rem; color:var(--sub); margin-top:3px; line-height:1.4; }
+  .fear-item { padding:8px 0; border-bottom:1px solid var(--border); display:flex; gap:8px; align-items:flex-start; }
+  .fear-item:last-child { border-bottom:none; }
+  .fear-q { font-size:0.77rem; font-weight:600; color:var(--text); }
+  .fear-a { font-size:0.68rem; color:var(--sub); margin-top:2px; line-height:1.4; }
+  .tool-grid { display:flex; flex-wrap:wrap; gap:8px; }
+  .tool-pill {
+    display:flex; align-items:center; gap:6px; background:var(--card2);
+    border:1px solid var(--border); border-radius:30px; padding:6px 14px;
+    font-size:0.75rem; font-weight:600; color:var(--text);
+  }
+  .tool-badge {
+    font-size:0.55rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+    padding:2px 6px; border-radius:10px;
+  }
+  .badge-new     { background:rgba(79,209,197,.2); color:#4fd1c5; }
+  .badge-upgrade { background:rgba(124,92,252,.2); color:#a78bfa; }
+  .badge-trend   { background:rgba(246,166,35,.2); color:#f6a623; }
+  .learn-item { padding:10px 0; border-bottom:1px solid var(--border); }
+  .learn-item:last-child { border-bottom:none; }
+  .learn-title { font-size:0.8rem; font-weight:700; color:var(--text); margin-bottom:4px; }
+  .learn-how { font-size:0.7rem; color:var(--sub); line-height:1.4; margin-bottom:5px; }
+  .tag-row { display:flex; gap:4px; flex-wrap:wrap; }
+  .product-insight {
+    margin-top:12px; background:rgba(79,209,197,.07); border:1px solid rgba(79,209,197,.2);
+    border-radius:8px; padding:10px; font-size:0.72rem; color:#4fd1c5; line-height:1.5;
+  }
+  .product-insight .pi-label { font-size:0.6rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+  @media (max-width: 900px) {
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid #1e1e30;">
+  <div>
+    <div style="font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,#a78bfa,#4fd1c5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">⚡ Jobescape · AI Brief</div>
+    <div style="font-size:0.72rem;color:#64748b;">Для продуктовой и маркетинговой команды</div>
+  </div>
+  <div style="background:#141420;border:1px solid #1e1e30;padding:6px 14px;border-radius:20px;font-size:0.75rem;color:#94a3b8;font-weight:600;">29 апреля 2026</div>
+</div>
+
+<!-- SECTION 1: СИГНАЛЫ ДНЯ -->
+<div class="section-title">📡 Сигналы дня</div>
+<div class="grid-4">
+
+  <!-- Card 1: Главный инсайт -->
+  <div class="card">
+    <div class="tag tag-purple">Главный инсайт</div>
+    <div class="card-title">Google объединил Gemini и NotebookLM — теперь это единое учебное пространство</div>
+    <div class="card-body">29 апреля Google запустил «Notebooks» прямо в приложении Gemini — личные базы знаний, которые автоматически синхронизируются с NotebookLM. Добавил заметки в Gemini — они сразу доступны в NotebookLM для создания видео-обзоров, инфографики, викторин. Пока для подписчиков Ultra/Pro/Plus на вебе.</div>
+    <div class="insight-box">
+      <div class="label">→ что это значит для нас</div>
+      Google теперь напрямую конкурирует с нами в EdTech. Jobescape должен показывать конкретный заработок — то, чего Google никогда не даст.
+    </div>
+  </div>
+
+  <!-- Card 2: Вирусный момент -->
+  <div class="card">
+    <div class="tag tag-orange">Вирусный момент</div>
+    <div class="card-title">«Butterfly Effect» AI-фото захватывает Instagram: миллионы публикаций</div>
+    <div class="card-body">Тренд последних дней: люди создают фото, где за спиной — симметричные «крылья бабочки» из других фото этого же человека. Всё генерируется ChatGPT / Midjourney за 1 промпт. Хэштег набирает сотни тысяч постов каждый день.</div>
+    <div class="insight-box">
+      <div class="label">→ что это значит для нас</div>
+      Готовый крючок для контента: «Сделай себе вирусное фото за 30 секунд» — прямо в следующем уроке или Reels.
+    </div>
+  </div>
+
+  <!-- Card 3: Барьер аудитории -->
+  <div class="card">
+    <div class="tag tag-red">Барьер аудитории</div>
+    <div class="card-title">«AI-навыки нужны, но непонятно с чего начать» — главный страх апреля</div>
+    <div class="card-body">Upwork фиксирует рост спроса на AI-навыки +109% год к году. AI-фрилансеры зарабатывают на 44% больше среднего по платформе. Но большинство потенциальных пользователей парализованы огромным выбором инструментов и не делают первый шаг.</div>
+    <div class="insight-box">
+      <div class="label">→ что это значит для нас</div>
+      Onboarding Jobescape должен отвечать на вопрос «с чего начать именно мне» — персонализированный путь, а не список уроков.
+    </div>
+  </div>
+
+  <!-- Card 4: Тренд -->
+  <div class="card">
+    <div class="tag tag-teal">Тренд</div>
+    <div class="card-title">Midjourney V8.1: HD-режим в 3 раза быстрее и дешевле — ИИ-изображения стали масс-рынком</div>
+    <div class="card-body">Midjourney выпустил стабилизирующее обновление V8.1 в апреле 2026: HD-режим теперь в 3х быстрее и в 3х дешевле предыдущей версии. Визуальный контент через AI становится доступнее для обычных людей без дизайнерского образования.</div>
+    <div class="insight-box">
+      <div class="label">→ что это значит для нас</div>
+      Порог для монетизации через AI-дизайн снизился. Теперь научить пользователей зарабатывать на этом ещё реальнее — за 1–2 вечера.
+    </div>
+  </div>
+
+</div>
+
+<!-- SECTION 2: ЧТО УЧИТЬ + SIDE HUSTLE -->
+<div class="grid-2">
+
+  <!-- Left: ЧТО УЧИТЬ СЕГОДНЯ -->
+  <div class="card">
+    <div class="section-title" style="margin-bottom:14px;">🎓 Что учить сегодня</div>
+
+    <div class="learn-item">
+      <div class="learn-title">1. Google Notebooks + NotebookLM</div>
+      <div class="learn-how">Как создать личную базу знаний: добавить источники, сгенерировать видео-конспект, пройти AI-викторину. Актуально для студентов, специалистов, HR.</div>
+      <div class="tag-row">
+        <span class="tag tag-green" style="margin:0;">Уровень: Лёгкий</span>
+        <span class="tag tag-teal" style="margin:0;">Монетизация: Продуктивность → консультант</span>
+      </div>
+    </div>
+
+    <div class="learn-item">
+      <div class="learn-title">2. Midjourney V8.1 — создание контента</div>
+      <div class="learn-how">Как генерировать HD-изображения для соцсетей, рекламы, продуктов. V8.1 — оптимальный момент для начала: быстро, дёшево, качественно.</div>
+      <div class="tag-row">
+        <span class="tag tag-green" style="margin:0;">Уровень: Лёгкий</span>
+        <span class="tag tag-orange" style="margin:0;">Монетизация: $40-80/изображение на Fiverr</span>
+      </div>
+    </div>
+
+    <div class="learn-item">
+      <div class="learn-title">3. Butterfly Effect — промпт-инжиниринг для вирусных фото</div>
+      <div class="learn-how">Как создать тренд-фото через ChatGPT или Midjourney. Обучаем на конкретном вирусном примере — это лучший способ показать ценность промптинга «на пальцах».</div>
+      <div class="tag-row">
+        <span class="tag tag-green" style="margin:0;">Уровень: Лёгкий</span>
+        <span class="tag tag-pink" style="margin:0;">Монетизация: SMM-услуги для брендов</span>
+      </div>
+    </div>
+
+    <div class="learn-item">
+      <div class="learn-title">4. AI Video Editing — Runway, CapCut AI, Descript</div>
+      <div class="learn-how">Монтаж и создание коротких видео для TikTok/Reels через AI. Самый быстрорастущий запрос на Upwork/Fiverr в апреле 2026 — клиенты платят $40-100/ч.</div>
+      <div class="tag-row">
+        <span class="tag tag-yellow" style="margin:0;">Уровень: Средний</span>
+        <span class="tag tag-orange" style="margin:0;">Монетизация: $40-100/ч на Upwork</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Right: SIDE HUSTLE СИГНАЛЫ -->
+  <div class="card">
+    <div class="section-title" style="margin-bottom:14px;">💰 Side hustle сигналы</div>
+
+    <div class="hustle-item">
+      <div>
+        <div class="hustle-name">🎬 AI Video Editing</div>
+        <div class="hustle-desc">TikTok, Reels, YouTube Shorts через Runway / CapCut AI / Descript — спрос на Upwork бьёт рекорды</div>
+      </div>
+      <div class="income-badge">$40–100/ч</div>
+    </div>
+
+    <div class="hustle-item">
+      <div>
+        <div class="hustle-name">🤖 AI Chatbot Setup</div>
+        <div class="hustle-desc">Кастомные боты для малого бизнеса: клиентский сервис, продажи, FAQ — без кода через Claude/ChatGPT API</div>
+      </div>
+      <div class="income-badge">$75–200/ч</div>
+    </div>
+
+    <div class="hustle-item">
+      <div>
+        <div class="hustle-name">✍️ AI Newsletter Writing</div>
+        <div class="hustle-desc">Стратегия + написание email-рассылок для стартапов и фаундеров — быстрорастущий запрос на Fiverr</div>
+      </div>
+      <div class="income-badge">$500–2000/мес</div>
+    </div>
+
+    <div class="hustle-item">
+      <div>
+        <div class="hustle-name">🖼️ AI Image Design</div>
+        <div class="hustle-desc">Брендинг, соцсети, рекламные баннеры через Midjourney V8.1 — порог входа снизился в 3 раза</div>
+      </div>
+      <div class="income-badge">$20–80/изображение</div>
+    </div>
+
+    <div class="hustle-item">
+      <div>
+        <div class="hustle-name">⚡ AI Automation Consulting</div>
+        <div class="hustle-desc">Настройка Make/Zapier + AI агентов для малого бизнеса. Реалистичный старт без кода за 1–2 недели обучения</div>
+      </div>
+      <div class="income-badge">$75–200/ч</div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- SECTION 3: КОНТЕНТ / КОНКУРЕНТЫ / АУДИТОРИЯ -->
+<div class="grid-3">
+
+  <!-- Col 1: КОНТЕНТ-ХУКИ -->
+  <div class="card">
+    <div class="section-title" style="margin-bottom:14px;">✏️ Контент-хуки</div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#4fd1c5;">🔥 Максимальный охват</div>
+      <div class="hook-text">«Google теперь делает за тебя конспекты, видеоуроки и тесты — бесплатно»</div>
+      <div class="hook-sub">Объяснить Notebooks в Gemini + NotebookLM простым языком. Вставить скриншот. Спросить: «Ты уже пробовал?»</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#f6a623;">⚡ Вирусный</div>
+      <div class="hook-text">«Сделай себе вирусное AI-фото за 30 секунд — все делают Butterfly Effect»</div>
+      <div class="hook-sub">Показать пример до/после + промпт. Призыв: сохрани и попробуй прямо сейчас.</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#a78bfa;">📚 Образовательный</div>
+      <div class="hook-text">«5 AI-инструментов, которые стоят как Netflix, а заменяют целый офис»</div>
+      <div class="hook-sub">Midjourney, NotebookLM, Runway, Claude, Make.com — цена vs. ценность для одиночки.</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#f56565;">🛡️ Закрытие страха</div>
+      <div class="hook-text">«Люди с AI-навыками зарабатывают на 44% больше — и ни один из них не программист»</div>
+      <div class="hook-sub">Данные Upwork: +109% спрос, +44% доход. Вывод: навык, а не диплом.</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#f687b3;">✨ Инспирейшн</div>
+      <div class="hook-text">«NotebookLM превратит твои заметки в подкаст и видео. Учёба больше не скучная»</div>
+      <div class="hook-sub">Показать функцию Audio Overview / Cinematic Video в действии. Актуально для студентов.</div>
+    </div>
+
+  </div>
+
+  <!-- Col 2: КОНКУРЕНТЫ -->
+  <div class="card">
+    <div class="section-title" style="margin-bottom:14px;">🔭 Конкуренты</div>
+
+    <div class="competitor-item">
+      <div class="competitor-name">
+        Google (NotebookLM + Gemini)
+        <span class="signal-badge signal-high">🔴 Высокий сигнал</span>
+      </div>
+      <div class="competitor-desc">Запуск Notebooks в Gemini 29 апреля — бесплатный AI-тьютор с видео, тестами и конспектами прямо в приложении. Прямой конкурент обучающим платформам. Угроза: пользователи перестают платить за AI-обучение отдельно.</div>
+    </div>
+
+    <div class="competitor-item">
+      <div class="competitor-name">
+        Midjourney
+        <span class="signal-badge signal-medium">🟡 Средний сигнал</span>
+      </div>
+      <div class="competitor-desc">V8.1 делает визуальный контент доступнее — косвенно усиливает конкурентов, которые учат Midjourney. Jobescape может использовать это как хук для урока, а не угрозу.</div>
+    </div>
+
+    <div class="competitor-item">
+      <div class="competitor-name">
+        Upwork / Fiverr
+        <span class="signal-badge signal-medium">🟡 Средний сигнал</span>
+      </div>
+      <div class="competitor-desc">Платформы активно продвигают AI-категории — +109% спрос год к году. Это подтверждает нашу аудиторию: люди ищут заработок через AI, а не просто «интересуются».</div>
+    </div>
+
+    <div class="competitor-item">
+      <div class="competitor-name">
+        YouTube (бесплатные AI-туториалы)
+        <span class="signal-badge signal-low">⚪ Низкий сигнал</span>
+      </div>
+      <div class="competitor-desc">AI-контент на YouTube растёт, но фрагментарен. Jobescape выигрывает за счёт структуры и конкретного пути к заработку — то, что YouTube не даёт.</div>
+    </div>
+
+  </div>
+
+  <!-- Col 3: ЧТО СПРАШИВАЕТ АУДИТОРИЯ -->
+  <div class="card">
+    <div class="section-title" style="margin-bottom:14px;">🙋 Что спрашивает аудитория</div>
+
+    <div class="fear-item">
+      <div style="font-size:1.1rem;">🤷</div>
+      <div>
+        <div class="fear-q">«С чего вообще начать с AI? Это слишком сложно»</div>
+        <div class="fear-a">Самый частый барьер. Ответ: начать с одного конкретного инструмента под конкретную задачу (Butterfly Effect фото — отличный первый шаг).</div>
+      </div>
+    </div>
+
+    <div class="fear-item">
+      <div style="font-size:1.1rem;">💸</div>
+      <div>
+        <div class="fear-q">«Как реально зарабатывать с AI без кода и опыта?»</div>
+        <div class="fear-a">Ищут конкретику: сколько, как быстро, с каким инструментом. Upwork AI jobs и Fiverr AI video editing — реальные точки входа.</div>
+      </div>
+    </div>
+
+    <div class="fear-item">
+      <div style="font-size:1.1rem;">😰</div>
+      <div>
+        <div class="fear-q">«AI заменит мою профессию?»</div>
+        <div class="fear-a">Не «заменит», а «вытеснит тех, кто не умеет им пользоваться». Данные Upwork +44% дохода у тех, кто освоил AI — лучший контраргумент.</div>
+      </div>
+    </div>
+
+    <div class="fear-item">
+      <div style="font-size:1.1rem;">🛠️</div>
+      <div>
+        <div class="fear-q">«NotebookLM и Google Notebooks — это то же самое?»</div>
+        <div class="fear-a">Актуальный вопрос после вчерашнего запуска. Нужен понятный пост: чем отличаются и как использовать вместе.</div>
+      </div>
+    </div>
+
+    <div class="product-insight">
+      <div class="pi-label">💡 Продуктовый инсайт</div>
+      Запуск Notebooks в Gemini — повод для пуш-уведомления: «Google стал бесплатным тьютором. А ты умеешь зарабатывать с AI? Мы научим.» Создаст ощущение срочности и актуальности Jobescape.
+    </div>
+
+  </div>
+
+</div>
+
+<!-- SECTION 4: ИНСТРУМЕНТЫ ДНЯ -->
+<div class="section-title">🛠️ Инструменты дня</div>
+<div class="card2" style="margin-bottom:20px;">
+  <div class="tool-grid">
+
+    <div class="tool-pill">
+      <span>Google Notebooks in Gemini</span>
+      <span class="tool-badge badge-new">NEW</span>
+    </div>
+
+    <div class="tool-pill">
+      <span>NotebookLM (авто-категории, тесты)</span>
+      <span class="tool-badge badge-upgrade">UPGRADE</span>
+    </div>
+
+    <div class="tool-pill">
+      <span>Midjourney V8.1</span>
+      <span class="tool-badge badge-upgrade">UPGRADE</span>
+    </div>
+
+    <div class="tool-pill">
+      <span>AWS Autonomous Agents (DevOps)</span>
+      <span class="tool-badge badge-new">NEW</span>
+    </div>
+
+    <div class="tool-pill">
+      <span>Butterfly Effect AI Prompts</span>
+      <span class="tool-badge badge-trend">TREND</span>
+    </div>
+
+    <div class="tool-pill">
+      <span>CapCut AI (видеомонтаж)</span>
+      <span class="tool-badge badge-trend">TREND</span>
+    </div>
+
+    <div class="tool-pill">
+      <span>Runway (AI видео-редактор)</span>
+      <span class="tool-badge badge-trend">TREND</span>
+    </div>
+
+    <div class="tool-pill">
+      <span>Descript (подкасты + видео)</span>
+      <span class="tool-badge badge-trend">TREND</span>
+    </div>
+
+    <div class="tool-pill">
+      <span>Make.com + AI (автоматизация)</span>
+      <span class="tool-badge badge-trend">TREND</span>
+    </div>
+
+    <div class="tool-pill">
+      <span>MIT EnergAIzer (дата-центры)</span>
+      <span class="tool-badge badge-new">NEW</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="margin-top:24px;padding-top:14px;border-top:1px solid #1e1e30;font-size:0.68rem;color:#64748b;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+  <div>Jobescape · AI Daily Brief · 29 апреля 2026</div>
+  <div>Источники: Google Blog · llm-stats.com · Upwork · Midjourney · TechCrunch · MIT News</div>
+</div>
+
+</body>
+</html>
