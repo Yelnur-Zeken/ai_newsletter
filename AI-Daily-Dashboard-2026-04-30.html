@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobescape · AI Brief · 2026-04-30</title>
+<style>
+  :root {
+    --bg:#08080f; --card:#0f0f1a; --card2:#141420; --border:#1e1e30;
+    --accent:#7c5cfc; --teal:#4fd1c5; --orange:#f6a623; --red:#f56565;
+    --green:#48bb78; --yellow:#ecc94b; --pink:#f687b3; --text:#e2e8f0;
+    --muted:#64748b; --sub:#94a3b8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; padding:24px; max-width:1400px; margin:0 auto; }
+
+  /* GRID */
+  .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px; }
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:20px; }
+
+  /* CARDS */
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; }
+  .card2 { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:14px; }
+
+  /* SECTION HEADER */
+  .section-label {
+    font-size:0.65rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:12px; display:flex; align-items:center; gap:8px;
+  }
+  .section-label::after { content:''; flex:1; height:1px; background:var(--border); }
+
+  /* SIGNAL CARD */
+  .signal-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; position:relative; overflow:hidden; }
+  .signal-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+  .signal-card.purple::before { background:linear-gradient(90deg,#7c5cfc,#a78bfa); }
+  .signal-card.teal::before { background:linear-gradient(90deg,#4fd1c5,#2dd4bf); }
+  .signal-card.orange::before { background:linear-gradient(90deg,#f6a623,#f59e0b); }
+  .signal-card.pink::before { background:linear-gradient(90deg,#f687b3,#ec4899); }
+
+  .signal-emoji { font-size:1.6rem; margin-bottom:8px; display:block; }
+  .signal-title { font-size:0.85rem; font-weight:800; color:var(--text); margin-bottom:6px; line-height:1.3; }
+  .signal-desc { font-size:0.74rem; color:var(--sub); line-height:1.5; margin-bottom:10px; }
+  .signal-viral { font-size:0.72rem; color:var(--yellow); background:rgba(236,201,75,0.08); border-radius:6px; padding:6px 8px; margin-bottom:8px; line-height:1.4; }
+  .signal-barrier { font-size:0.72rem; color:var(--red); background:rgba(245,101,101,0.08); border-radius:6px; padding:6px 8px; margin-bottom:10px; line-height:1.4; }
+  .signal-insight { font-size:0.72rem; color:var(--teal); border-top:1px solid var(--border); padding-top:8px; margin-top:2px; line-height:1.4; font-weight:600; }
+
+  /* TAGS */
+  .tag { display:inline-block; font-size:0.62rem; font-weight:700; padding:2px 7px; border-radius:20px; margin-right:4px; margin-top:4px; }
+  .tag-purple { background:rgba(124,92,252,0.18); color:#a78bfa; }
+  .tag-teal { background:rgba(79,209,197,0.15); color:#4fd1c5; }
+  .tag-green { background:rgba(72,187,120,0.15); color:#48bb78; }
+  .tag-orange { background:rgba(246,166,35,0.15); color:#f6a623; }
+  .tag-red { background:rgba(245,101,101,0.15); color:#f56565; }
+  .tag-yellow { background:rgba(236,201,75,0.15); color:#ecc94b; }
+  .tag-pink { background:rgba(246,135,179,0.15); color:#f687b3; }
+  .tag-muted { background:rgba(100,116,139,0.18); color:#94a3b8; }
+
+  /* LEARN ITEM */
+  .learn-item { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin-bottom:10px; }
+  .learn-num { display:inline-block; width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,#7c5cfc,#4fd1c5); color:#fff; font-size:0.62rem; font-weight:900; text-align:center; line-height:20px; margin-right:8px; flex-shrink:0; }
+  .learn-header { display:flex; align-items:center; margin-bottom:6px; }
+  .learn-tool { font-size:0.82rem; font-weight:800; color:var(--text); }
+  .learn-how { font-size:0.72rem; color:var(--sub); line-height:1.5; margin-bottom:6px; }
+
+  /* SIDE HUSTLE */
+  .hustle-item { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin-bottom:10px; display:flex; align-items:flex-start; gap:10px; }
+  .hustle-emoji { font-size:1.3rem; flex-shrink:0; margin-top:2px; }
+  .hustle-name { font-size:0.8rem; font-weight:800; color:var(--text); margin-bottom:3px; }
+  .hustle-desc { font-size:0.71rem; color:var(--sub); line-height:1.4; margin-bottom:5px; }
+  .income-badge { display:inline-block; font-size:0.65rem; font-weight:800; padding:2px 8px; border-radius:20px; background:rgba(72,187,120,0.15); color:#48bb78; border:1px solid rgba(72,187,120,0.25); }
+
+  /* CONTENT HOOK */
+  .hook-item { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:11px 13px; margin-bottom:8px; }
+  .hook-label { font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:5px; }
+  .hook-text { font-size:0.74rem; color:var(--text); line-height:1.45; }
+
+  /* COMPETITOR */
+  .comp-item { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:11px 13px; margin-bottom:8px; }
+  .comp-name { font-size:0.79rem; font-weight:800; color:var(--text); margin-bottom:3px; }
+  .comp-desc { font-size:0.71rem; color:var(--sub); line-height:1.4; }
+  .signal-badge { display:inline-block; font-size:0.6rem; font-weight:800; padding:2px 7px; border-radius:20px; margin-top:5px; }
+  .signal-high { background:rgba(245,101,101,0.18); color:#f56565; }
+  .signal-med { background:rgba(236,201,75,0.15); color:#ecc94b; }
+  .signal-low { background:rgba(79,209,197,0.13); color:#4fd1c5; }
+
+  /* AUDIENCE Q */
+  .audience-item { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:11px 13px; margin-bottom:8px; }
+  .audience-q { font-size:0.76rem; color:var(--text); font-weight:600; line-height:1.4; margin-bottom:4px; }
+  .audience-hint { font-size:0.68rem; color:var(--muted); line-height:1.4; }
+
+  .product-insight { background:linear-gradient(135deg,rgba(124,92,252,0.12),rgba(79,209,197,0.08)); border:1px solid rgba(124,92,252,0.25); border-radius:10px; padding:12px; margin-top:6px; }
+  .product-insight-title { font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:5px; }
+  .product-insight-text { font-size:0.71rem; color:var(--sub); line-height:1.5; }
+
+  /* TOOLS PILL GRID */
+  .tools-grid { display:flex; flex-wrap:wrap; gap:10px; }
+  .tool-pill { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:8px; min-width:180px; }
+  .tool-pill-name { font-size:0.78rem; font-weight:700; color:var(--text); }
+  .tool-pill-desc { font-size:0.66rem; color:var(--sub); margin-top:1px; }
+  .badge-new { display:inline-block; font-size:0.58rem; font-weight:900; padding:2px 6px; border-radius:20px; background:rgba(72,187,120,0.2); color:#48bb78; border:1px solid rgba(72,187,120,0.3); letter-spacing:0.05em; }
+  .badge-upgrade { display:inline-block; font-size:0.58rem; font-weight:900; padding:2px 6px; border-radius:20px; background:rgba(246,166,35,0.18); color:#f6a623; border:1px solid rgba(246,166,35,0.3); letter-spacing:0.05em; }
+  .badge-trend { display:inline-block; font-size:0.58rem; font-weight:900; padding:2px 6px; border-radius:20px; background:rgba(246,135,179,0.18); color:#f687b3; border:1px solid rgba(246,135,179,0.3); letter-spacing:0.05em; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid #1e1e30;">
+  <div>
+    <div style="font-size:1.15rem;font-weight:900;background:linear-gradient(135deg,#a78bfa,#4fd1c5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">⚡ Jobescape · AI Brief</div>
+    <div style="font-size:0.72rem;color:#64748b;margin-top:2px;">Для продуктовой и маркетинговой команды · Только свежее · Только важное</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div style="background:#141420;border:1px solid #1e1e30;padding:6px 14px;border-radius:20px;font-size:0.75rem;color:#94a3b8;font-weight:600;">30 апреля 2026</div>
+    <div style="background:rgba(72,187,120,0.12);border:1px solid rgba(72,187,120,0.25);padding:6px 14px;border-radius:20px;font-size:0.72rem;color:#48bb78;font-weight:700;">7 новых инструментов</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SECTION 1: СИГНАЛЫ ДНЯ ═══════════════════ -->
+<div class="section-label">📡 Сигналы дня</div>
+<div class="grid-4" style="margin-bottom:24px;">
+
+  <!-- Card 1 -->
+  <div class="signal-card purple">
+    <span class="signal-emoji">🔗</span>
+    <div class="signal-title">Meta Ads теперь управляется через ChatGPT и Claude</div>
+    <div class="signal-desc">30 апреля Meta глобально запустила Ads AI Connectors — прямой MCP-мост между рекламным кабинетом и любым AI-инструментом. Больше никаких API-ключей и OAuth.</div>
+    <div class="signal-viral">🔥 Вирусный момент: «Напиши в ChatGPT: запусти рекламу на женщин 25–35 с бюджетом $50 — и это реально работает»</div>
+    <div class="signal-barrier">⚡ Барьер аудитории: «Реклама — это слишком технически» — этот барьер только что рухнул</div>
+    <div class="signal-insight">→ Что это значит для нас: срочно добавить урок «Первая реклама через ChatGPT» — это станет вирусным контентом</div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="signal-card teal">
+    <span class="signal-emoji">🤖</span>
+    <div class="signal-title">ChatGPT становится «рабочим столом» — Super App уже здесь</div>
+    <div class="signal-desc">OpenAI официально объединил чат, кодирование, поиск и агентов в единое приложение. ChatGPT теперь заменяет Google, GitHub Copilot, Perplexity и Notion одновременно.</div>
+    <div class="signal-viral">🔥 Вирусный момент: люди удаляют 5–7 приложений и оставляют только ChatGPT — треды набирают тысячи реакций</div>
+    <div class="signal-barrier">⚡ Барьер аудитории: «Мне нужно слишком много разных инструментов» — теперь один</div>
+    <div class="signal-insight">→ Что это значит для нас: контент «Удали эти 5 приложений — ChatGPT заменит всё» даст огромный охват</div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="signal-card orange">
+    <span class="signal-emoji">📦</span>
+    <div class="signal-title">Google выпустил Gemma 4: GPT-4 уровень — бесплатно и открыто</div>
+    <div class="signal-desc">Google открыла модели Gemma 4 (26B и 31B параметров) через AI Studio и Gemini API. Можно запустить на своём сервере, встроить в продукт или создать на базе свой AI-инструмент.</div>
+    <div class="signal-viral">🔥 Вирусный момент: «Запусти GPT-4 уровень локально — бесплатно, без цензуры, навсегда» — технари в восторге</div>
+    <div class="signal-barrier">⚡ Барьер аудитории: «AI — дорого и недоступно» — Gemma 4 это опровергает</div>
+    <div class="signal-insight">→ Что это значит для нас: для продвинутой аудитории — новый урок «Свой AI-инструмент за 0 рублей»</div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="signal-card pink">
+    <span class="signal-emoji">🔥</span>
+    <div class="signal-title">Вирус на LinkedIn: предпринимательница наняла 9 AI-сотрудников</div>
+    <div class="signal-desc">Клэр Во поделилась стратегией: 9 AI-агентов выполняют работу полноценной команды. Пост взорвал LinkedIn — одни восхищаются, другие возмущаются. Оба лагеря дают охват.</div>
+    <div class="signal-viral">🔥 Вирусный момент: «Я не нанимаю людей. У меня есть AI-команда» — комментарии тысячи</div>
+    <div class="signal-barrier">⚡ Барьер аудитории: «AI не может заменить живого человека» — Клэр доказала обратное</div>
+    <div class="signal-insight">→ Что это значит для нас: публикуем свою версию: «Как собрать AI-команду с нуля» — гарантированный вирус</div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════ SECTION 2: ЧТО УЧИТЬ + SIDE HUSTLE ═══════════════════ -->
+<div class="grid-2" style="margin-bottom:24px;">
+
+  <!-- LEFT: ЧТО УЧИТЬ СЕГОДНЯ -->
+  <div>
+    <div class="section-label">📚 Что учить сегодня</div>
+
+    <div class="learn-item">
+      <div class="learn-header">
+        <span class="learn-num">1</span>
+        <span class="learn-tool">Meta Ads через ChatGPT — управление рекламой текстом</span>
+      </div>
+      <div class="learn-how">Практический урок: подключить Meta Ads Connector к ChatGPT, написать первую кампанию на обычном языке, запустить и проверить результаты без входа в Ads Manager.</div>
+      <div>
+        <span class="tag tag-green">Начальный</span>
+        <span class="tag tag-orange">Монетизация: фриланс + свой бизнес</span>
+        <span class="tag tag-red">🔥 Горячая тема</span>
+      </div>
+    </div>
+
+    <div class="learn-item">
+      <div class="learn-header">
+        <span class="learn-num">2</span>
+        <span class="learn-tool">Custom GPT Builder — боты под конкретный бизнес</span>
+      </div>
+      <div class="learn-how">Пошаговый гайд: создать специализированный GPT для юриста / клиники / интернет-магазина. Настроить инструкции, загрузить базу знаний, протестировать с реальными вопросами.</div>
+      <div>
+        <span class="tag tag-yellow">Средний</span>
+        <span class="tag tag-orange">Монетизация: $500–1,500/бот</span>
+      </div>
+    </div>
+
+    <div class="learn-item">
+      <div class="learn-header">
+        <span class="learn-num">3</span>
+        <span class="learn-tool">ChatGPT Images 2.0 — визуалы, аватары, контент для соцсетей</span>
+      </div>
+      <div class="learn-how">Урок: создать брендовый набор из 10 визуалов для соцсетей за 15 минут. Фокус на промпт-инжиниринге, стиле бренда и готовых шаблонах для Reels/Stories.</div>
+      <div>
+        <span class="tag tag-green">Начальный</span>
+        <span class="tag tag-orange">Монетизация: SMM + дизайн-услуги</span>
+      </div>
+    </div>
+
+    <div class="learn-item">
+      <div class="learn-header">
+        <span class="learn-num">4</span>
+        <span class="learn-tool">AI Автоматизация для малого бизнеса — консалтинг $75–200/час</span>
+      </div>
+      <div class="learn-how">Показать как настроить AI-автоответчик, email-бота и GPT для повторяющихся задач в малом бизнесе. Дать скрипт для первого клиентского звонка и шаблон оффера.</div>
+      <div>
+        <span class="tag tag-yellow">Средний</span>
+        <span class="tag tag-orange">Монетизация: $75–200/час</span>
+        <span class="tag tag-purple">Рекуррентный доход</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: SIDE HUSTLE СИГНАЛЫ -->
+  <div>
+    <div class="section-label">💰 Side Hustle сигналы</div>
+
+    <div class="hustle-item">
+      <span class="hustle-emoji">🎯</span>
+      <div>
+        <div class="hustle-name">Meta Ads AI Консультант</div>
+        <div class="hustle-desc">Помогаешь малому бизнесу подключить ChatGPT к Meta Ads и запустить первую кампанию. Новая ниша — конкуренция почти нулевая, появилась только 30 апреля.</div>
+        <span class="income-badge">$300–800 / клиент</span>
+      </div>
+    </div>
+
+    <div class="hustle-item">
+      <span class="hustle-emoji">🤖</span>
+      <div>
+        <div class="hustle-name">Custom GPT Builder</div>
+        <div class="hustle-desc">Создаёшь специализированные GPT-боты под конкретный бизнес. Каждый бот занимает 2–4 часа работы. Спрос растёт — бизнес понял, что нужен «свой AI».</div>
+        <span class="income-badge">$500–1,500 / бот</span>
+      </div>
+    </div>
+
+    <div class="hustle-item">
+      <span class="hustle-emoji">⚙️</span>
+      <div>
+        <div class="hustle-name">AI Automation Specialist</div>
+        <div class="hustle-desc">Настраиваешь AI-воркфлоу для компаний: email-боты, автоответчики, интеграции. Рекуррентная модель — клиент платит каждый месяц за поддержку и развитие.</div>
+        <span class="income-badge">$75–200 / час</span>
+      </div>
+    </div>
+
+    <div class="hustle-item">
+      <span class="hustle-emoji">🎨</span>
+      <div>
+        <div class="hustle-name">ChatGPT Images 2.0 Дизайнер</div>
+        <div class="hustle-desc">Создаёшь брендовые визуалы, аватары и контент-паки для соцсетей. Продаёшь подписку: 20–30 изображений в месяц для бизнеса или инфлюенсера.</div>
+        <span class="income-badge">$200–500 / месяц/клиент</span>
+      </div>
+    </div>
+
+    <div class="hustle-item">
+      <span class="hustle-emoji">🎬</span>
+      <div>
+        <div class="hustle-name">TikTok AI Video Creator (Seedance 2.0)</div>
+        <div class="hustle-desc">Снимаешь AI-видеорекламу для брендов через TikTok Symphony / Seedance 2.0. Текст → профессиональное 2K-видео за минуты. Бренды платят хорошо за скорость.</div>
+        <span class="income-badge">$500–2,000 / проект</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ SECTION 3: ХУКИ + КОНКУРЕНТЫ + АУДИТОРИЯ ═══════════════════ -->
+<div class="grid-3" style="margin-bottom:24px;">
+
+  <!-- COL 1: КОНТЕНТ-ХУКИ -->
+  <div>
+    <div class="section-label">✍️ Контент-хуки</div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#48bb78;">максимальный охват</div>
+      <div class="hook-text">«Теперь можно управлять рекламой на Facebook прямо через ChatGPT — просто пишешь на русском языке и всё запускается. Показываю как за 3 шага»</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#f687b3;">вирусный</div>
+      <div class="hook-text">«Эта предпринимательница наняла 9 AI-сотрудников и больше не нанимает людей. LinkedIn в огне. А ты как к этому относишься?»</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#4fd1c5;">образовательный</div>
+      <div class="hook-text">«3 AI-навыка, которые стоят реальных денег прямо сейчас: запуск Meta Ads через ChatGPT, создание GPT-ботов и автоматизация бизнеса. Разбираем каждый»</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#f56565;">закрытие страха</div>
+      <div class="hook-text">«Ты думаешь, реклама — это слишком сложно? Meta только что убрала всё техническое. Теперь ChatGPT делает это за тебя. Вот доказательство»</div>
+    </div>
+
+    <div class="hook-item">
+      <div class="hook-label" style="color:#ecc94b;">инспирейшн</div>
+      <div class="hook-text">«В 2026-м не нужна команда из 10 человек. Нужен ChatGPT и желание учиться. Вот что реально зарабатывают люди с AI-навыками — без технического фона»</div>
+    </div>
+
+  </div>
+
+  <!-- COL 2: КОНКУРЕНТЫ -->
+  <div>
+    <div class="section-label">🏁 Конкуренты</div>
+
+    <div class="comp-item">
+      <div class="comp-name">Coursera</div>
+      <div class="comp-desc">Запускает AI-агентов как персональных тьюторов внутри курсов — агент отвечает на вопросы, проверяет задания и адаптирует темп обучения под студента.</div>
+      <div><span class="signal-badge signal-high">🔴 Высокий сигнал</span></div>
+    </div>
+
+    <div class="comp-item">
+      <div class="comp-name">Duolingo</div>
+      <div class="comp-desc">Тестирует AI-компаньона с долгосрочной памятью — помнит ошибки, прогресс и мотивацию пользователя между сессиями. Персонализация на новом уровне.</div>
+      <div><span class="signal-badge signal-med">🟡 Средний сигнал</span></div>
+    </div>
+
+    <div class="comp-item">
+      <div class="comp-name">Skillshare</div>
+      <div class="comp-desc">AI-ассистент помогает преподавателям создавать курсы: генерирует структуру, подбирает упражнения и пишет описания уроков. Инструмент для создателей контента.</div>
+      <div><span class="signal-badge signal-med">🟡 Средний сигнал</span></div>
+    </div>
+
+    <div class="comp-item">
+      <div class="comp-name">Google AI Educator Series</div>
+      <div class="comp-desc">Стартует 13 мая 2026 — бесплатные модули по AI для педагогов. Это прямая конкуренция за аудиторию учителей и корпоративных тренеров, которую мы тоже можем захватить.</div>
+      <div><span class="signal-badge signal-high">🔴 Высокий сигнал</span></div>
+    </div>
+
+  </div>
+
+  <!-- COL 3: ЧТО СПРАШИВАЕТ АУДИТОРИЯ -->
+  <div>
+    <div class="section-label">💬 Что спрашивает аудитория</div>
+
+    <div class="audience-item">
+      <div class="audience-q">«Как мне зарабатывать на AI, если я не программист?»</div>
+      <div class="audience-hint">Главный страх нашей аудитории. Сегодня Meta Ads + ChatGPT — идеальный ответ. Никакого кода, конкретный заработок.</div>
+    </div>
+
+    <div class="audience-item">
+      <div class="audience-q">«Что такое MCP и почему все вдруг о нём говорят?»</div>
+      <div class="audience-hint">Запуск Meta Ads Connectors через MCP — идеальный повод объяснить протокол на живом примере. Не абстрактно, а «вот как это работает в рекламе».</div>
+    </div>
+
+    <div class="audience-item">
+      <div class="audience-q">«ChatGPT Images 2.0 — это то же самое что Midjourney?»</div>
+      <div class="audience-hint">Нужно сравнение. Покажем разницу и под какие задачи что выбирать — это вечный контент с высоким поиском.</div>
+    </div>
+
+    <div class="audience-item">
+      <div class="audience-q">«Можно ли реально прожить на доходы от AI-фриланса?»</div>
+      <div class="audience-hint">Публикуем реальные кейсы: $500–1,500 за GPT-бот, $300–800 за настройку рекламы. Конкретные цифры закрывают скептицизм лучше любых аргументов.</div>
+    </div>
+
+    <div class="product-insight">
+      <div class="product-insight-title">📦 Продуктовый инсайт</div>
+      <div class="product-insight-text">Главный запрос апреля: «покажи конкретный заработок, не теорию». Аудитория скептична. Нужны кейсы с реальными цифрами и пошаговые уроки, после которых можно сразу начать. Запуск Meta Ads Connectors — лучший кандидат для «урока-первой победы».</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ SECTION 4: ИНСТРУМЕНТЫ ДНЯ ═══════════════════ -->
+<div style="margin-bottom:24px;">
+  <div class="section-label">🛠️ Инструменты дня</div>
+  <div class="tools-grid">
+
+    <div class="tool-pill">
+      <div style="font-size:1.4rem;">🔗</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
+          <div class="tool-pill-name">Meta Ads AI Connectors</div>
+          <span class="badge-new">NEW</span>
+        </div>
+        <div class="tool-pill-desc">Управление Meta рекламой через ChatGPT / Claude</div>
+      </div>
+    </div>
+
+    <div class="tool-pill">
+      <div style="font-size:1.4rem;">📦</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
+          <div class="tool-pill-name">Google Gemma 4</div>
+          <span class="badge-new">NEW</span>
+        </div>
+        <div class="tool-pill-desc">Открытые модели 26B/31B — бесплатно через AI Studio</div>
+      </div>
+    </div>
+
+    <div class="tool-pill">
+      <div style="font-size:1.4rem;">🎨</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
+          <div class="tool-pill-name">ChatGPT Images 2.0</div>
+          <span class="badge-upgrade">UPGRADE</span>
+        </div>
+        <div class="tool-pill-desc">Чёткий текст, мультиязычность, фотореализм</div>
+      </div>
+    </div>
+
+    <div class="tool-pill">
+      <div style="font-size:1.4rem;">🎬</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
+          <div class="tool-pill-name">TikTok Symphony Seedance 2.0</div>
+          <span class="badge-upgrade">UPGRADE</span>
+        </div>
+        <div class="tool-pill-desc">AI-видео 2K для рекламы — глобально доступно</div>
+      </div>
+    </div>
+
+    <div class="tool-pill">
+      <div style="font-size:1.4rem;">💬</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
+          <div class="tool-pill-name">Snapchat AI Sponsored Snaps</div>
+          <span class="badge-new">NEW</span>
+        </div>
+        <div class="tool-pill-desc">Бренды-агенты прямо в чате — 950 млрд сообщений/кв.</div>
+      </div>
+    </div>
+
+    <div class="tool-pill">
+      <div style="font-size:1.4rem;">🔐</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
+          <div class="tool-pill-name">ChatGPT Advanced Security</div>
+          <span class="badge-upgrade">UPGRADE</span>
+        </div>
+        <div class="tool-pill-desc">Passkeys, более сильная защита аккаунта</div>
+      </div>
+    </div>
+
+    <div class="tool-pill">
+      <div style="font-size:1.4rem;">🤖</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
+          <div class="tool-pill-name">ChatGPT Super App</div>
+          <span class="badge-new">NEW</span>
+        </div>
+        <div class="tool-pill-desc">Чат + код + поиск + агенты в одном приложении</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<div style="margin-top:24px;padding-top:14px;border-top:1px solid #1e1e30;font-size:0.68rem;color:#64748b;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+  <div>Jobescape · AI Daily Brief · 2026-04-30</div>
+  <div>Источники: TechCrunch · Snap Newsroom · Social Media Today · Digiday · llm-stats.com · OpenAI Help Center · Google AI Studio</div>
+</div>
+
+</body>
+</html>
