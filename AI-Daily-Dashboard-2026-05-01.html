@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobescape · AI Brief · 2026-05-01</title>
+<style>
+  :root {
+    --bg:#08080f; --card:#0f0f1a; --card2:#141420; --border:#1e1e30;
+    --accent:#7c5cfc; --teal:#4fd1c5; --orange:#f6a623; --red:#f56565;
+    --green:#48bb78; --yellow:#ecc94b; --pink:#f687b3; --text:#e2e8f0;
+    --muted:#64748b; --sub:#94a3b8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; padding:24px; max-width:1400px; margin:0 auto; }
+  .section-title {
+    font-size:0.65rem; font-weight:800; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--muted); margin-bottom:12px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; }
+  .card2 { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:14px; }
+  .tag {
+    display:inline-block; padding:2px 8px; border-radius:20px;
+    font-size:0.62rem; font-weight:700; letter-spacing:0.05em;
+  }
+  .tag-accent { background:rgba(124,92,252,0.15); color:var(--accent); }
+  .tag-teal { background:rgba(79,209,197,0.15); color:var(--teal); }
+  .tag-orange { background:rgba(246,166,35,0.15); color:var(--orange); }
+  .tag-red { background:rgba(245,101,101,0.15); color:var(--red); }
+  .tag-green { background:rgba(72,187,120,0.15); color:var(--green); }
+  .tag-yellow { background:rgba(236,201,75,0.15); color:var(--yellow); }
+  .tag-pink { background:rgba(246,135,179,0.15); color:var(--pink); }
+  .badge {
+    display:inline-block; padding:3px 10px; border-radius:20px;
+    font-size:0.6rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .badge-new { background:linear-gradient(135deg,#7c5cfc,#4fd1c5); color:#fff; }
+  .badge-upgrade { background:rgba(246,166,35,0.2); color:var(--orange); border:1px solid rgba(246,166,35,0.3); }
+  .badge-trend { background:rgba(246,135,179,0.15); color:var(--pink); border:1px solid rgba(246,135,179,0.3); }
+  .badge-preview { background:rgba(79,209,197,0.12); color:var(--teal); border:1px solid rgba(79,209,197,0.25); }
+  .signal-high { background:rgba(245,101,101,0.15); color:var(--red); border:1px solid rgba(245,101,101,0.25); border-radius:6px; padding:2px 8px; font-size:0.6rem; font-weight:700; }
+  .signal-mid { background:rgba(236,201,75,0.12); color:var(--yellow); border:1px solid rgba(236,201,75,0.25); border-radius:6px; padding:2px 8px; font-size:0.6rem; font-weight:700; }
+  .signal-low { background:rgba(79,209,197,0.1); color:var(--teal); border:1px solid rgba(79,209,197,0.2); border-radius:6px; padding:2px 8px; font-size:0.6rem; font-weight:700; }
+  .insight-box {
+    background:linear-gradient(135deg,rgba(124,92,252,0.08),rgba(79,209,197,0.05));
+    border:1px solid rgba(124,92,252,0.2); border-radius:10px; padding:12px;
+    font-size:0.75rem; color:var(--sub); margin-top:12px;
+  }
+  .insight-box strong { color:var(--accent); }
+  .arrow-insight {
+    margin-top:10px; padding:8px 12px;
+    background:rgba(124,92,252,0.07); border-left:2px solid var(--accent);
+    border-radius:0 6px 6px 0; font-size:0.72rem; color:var(--sub);
+  }
+  .arrow-insight b { color:var(--teal); }
+  .income-badge {
+    background:rgba(72,187,120,0.12); color:var(--green);
+    border:1px solid rgba(72,187,120,0.25); border-radius:20px;
+    padding:2px 10px; font-size:0.62rem; font-weight:700;
+    white-space:nowrap;
+  }
+  .hook-label {
+    font-size:0.58rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;
+    padding:2px 7px; border-radius:4px; margin-bottom:6px; display:inline-block;
+  }
+  .hook-reach { background:rgba(124,92,252,0.15); color:var(--accent); }
+  .hook-viral { background:rgba(245,101,101,0.15); color:var(--red); }
+  .hook-edu { background:rgba(79,209,197,0.12); color:var(--teal); }
+  .hook-fear { background:rgba(246,166,35,0.15); color:var(--orange); }
+  .hook-inspo { background:rgba(72,187,120,0.12); color:var(--green); }
+  .tool-pill {
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--card2); border:1px solid var(--border);
+    border-radius:24px; padding:6px 14px; font-size:0.73rem; font-weight:600;
+  }
+  .difficulty-easy { color:var(--green); font-size:0.6rem; font-weight:700; }
+  .difficulty-mid { color:var(--yellow); font-size:0.6rem; font-weight:700; }
+  .difficulty-hard { color:var(--red); font-size:0.6rem; font-weight:700; }
+  hr.divider { border:none; border-top:1px solid var(--border); margin:8px 0; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid #1e1e30;">
+  <div>
+    <div style="font-size:1.15rem;font-weight:900;background:linear-gradient(135deg,#a78bfa,#4fd1c5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">⚡ Jobescape · AI Brief</div>
+    <div style="font-size:0.72rem;color:#64748b;margin-top:2px;">Для продуктовой и маркетинговой команды · только вчерашние новости</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div style="background:#141420;border:1px solid #1e1e30;padding:6px 14px;border-radius:20px;font-size:0.75rem;color:#94a3b8;font-weight:600;">2026-05-01</div>
+    <div style="background:rgba(72,187,120,0.1);border:1px solid rgba(72,187,120,0.2);padding:6px 14px;border-radius:20px;font-size:0.7rem;color:#48bb78;font-weight:700;">ПЯТНИЦА</div>
+  </div>
+</div>
+
+<!-- SECTION 1: СИГНАЛЫ ДНЯ -->
+<div class="section-title">📡 Сигналы дня</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px;">
+
+  <!-- Card 1: Главный инсайт -->
+  <div class="card" style="border-top:2px solid var(--accent);">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+      <span class="tag tag-accent">🚀 Главный инсайт</span>
+    </div>
+    <div style="font-size:0.9rem;font-weight:800;color:#e2e8f0;margin-bottom:6px;line-height:1.35;">Microsoft Agent 365 — ИИ-агенты официально в продакшне</div>
+    <div style="font-size:0.73rem;color:var(--sub);line-height:1.5;margin-bottom:8px;">Microsoft запустил Agent 365 в общий доступ 1 мая — $15/пользователь/мес. Это первый корпоративный продукт для управления AI-агентами: видимость, безопасность, контроль. Плюс E7 Frontier Suite — $99/мес, всё в одном пакете включая Copilot.</div>
+    <div class="arrow-insight"><b>→ для нас:</b> ИИ-агенты перешли из хайпа в корпоративный стандарт. Учим настройке агентов — это новый must-have навык Q2 2026.</div>
+  </div>
+
+  <!-- Card 2: Вирусный момент -->
+  <div class="card" style="border-top:2px solid var(--red);">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+      <span class="tag tag-red">🔥 Вирусный момент</span>
+    </div>
+    <div style="font-size:0.9rem;font-weight:800;color:#e2e8f0;margin-bottom:6px;line-height:1.35;">Anthropic выгнали из Пентагона за отказ убрать AI-защиту</div>
+    <div style="font-size:0.73rem;color:var(--sub);line-height:1.5;margin-bottom:8px;">Министерство обороны США подписало соглашения с OpenAI, Google, Nvidia, Microsoft, AWS — а Anthropic (Claude) отказался и получил статус "supply-chain risk". Причина: отказ отключить ограничения на автономное оружие и слежку.</div>
+    <div class="arrow-insight"><b>→ для нас:</b> Claude воспринимается как "безопасный" вариант для обычных людей. Контентный крючок: "кто стоит на стороне пользователя?"</div>
+  </div>
+
+  <!-- Card 3: Барьер аудитории -->
+  <div class="card" style="border-top:2px solid var(--orange);">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+      <span class="tag tag-orange">🧱 Барьер аудитории</span>
+    </div>
+    <div style="font-size:0.9rem;font-weight:800;color:#e2e8f0;margin-bottom:6px;line-height:1.35;">ChatGPT Workspace Agents бесплатны только до 6 мая</div>
+    <div style="font-size:0.73rem;color:var(--sub);line-height:1.5;margin-bottom:8px;">OpenAI открыл Codex-powered Workspace Agents для учителей и EDU-планов. Агенты делают задания, отвечают студентам в Slack, составляют еженедельные отчёты. Но бесплатный доступ — только до 6 мая, потом кредитная система.</div>
+    <div class="arrow-insight"><b>→ для нас:</b> Срочность! Пишем туториал сегодня — "5 агентов для учителя за 10 минут, пока бесплатно".</div>
+  </div>
+
+  <!-- Card 4: Тренд -->
+  <div class="card" style="border-top:2px solid var(--teal);">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+      <span class="tag tag-teal">📈 Мегатренд</span>
+    </div>
+    <div style="font-size:0.9rem;font-weight:800;color:#e2e8f0;margin-bottom:6px;line-height:1.35;">AI уходит из чата в агентов — одновременно везде</div>
+    <div style="font-size:0.73rem;color:var(--sub);line-height:1.5;margin-bottom:8px;">1 мая: Microsoft Agent 365 GA + ChatGPT Workspace Agents + Anthropic Mythos (только для АНБ). Все крупные игроки переключились с "чат-ботов" на автономных агентов. Чат — это вчерашний день.</div>
+    <div class="arrow-insight"><b>→ для нас:</b> Репозиционируем контент: "Jobescape учит не ChatGPT, а AI-агентов — это следующий уровень".</div>
+  </div>
+
+</div>
+
+<!-- SECTION 2: ЧТО УЧИТЬ + SIDE HUSTLE -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:28px;">
+
+  <!-- Left: ЧТО УЧИТЬ СЕГОДНЯ -->
+  <div>
+    <div class="section-title">🎓 Что учить сегодня</div>
+    <div class="card" style="display:flex;flex-direction:column;gap:10px;">
+
+      <!-- Item 1 -->
+      <div class="card2">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px;">
+          <div style="font-size:0.82rem;font-weight:800;color:var(--text);">ChatGPT Workspace Agents</div>
+          <span class="difficulty-mid">★★☆ средне</span>
+        </div>
+        <div style="font-size:0.72rem;color:var(--sub);margin-bottom:7px;line-height:1.45;">Как строить агентов в ChatGPT: автоотчёты, интеграция Slack, Google Drive, расписание задач. Бесплатный доступ до 6 мая — учи сейчас.</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="tag tag-green" style="font-size:0.6rem;">💰 продажа агентов $500-2000/мес</span>
+          <span class="tag tag-accent" style="font-size:0.6rem;">без кода</span>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="card2">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px;">
+          <div style="font-size:0.82rem;font-weight:800;color:var(--text);">Microsoft Copilot + Agent 365</div>
+          <span class="difficulty-mid">★★☆ средне</span>
+        </div>
+        <div style="font-size:0.72rem;color:var(--sub);margin-bottom:7px;line-height:1.45;">Управление AI-агентами в корпоративной среде. Как показать ценность компании: видимость, безопасность, мониторинг. Аудитория — сотрудники крупных компаний.</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="tag tag-orange" style="font-size:0.6rem;">💰 консалтинг $50-150/ч</span>
+          <span class="tag tag-teal" style="font-size:0.6rem;">корпоративный рынок</span>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="card2">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px;">
+          <div style="font-size:0.82rem;font-weight:800;color:var(--text);">AI Workflow Design (картирование процессов)</div>
+          <span class="difficulty-easy">★☆☆ легко</span>
+        </div>
+        <div style="font-size:0.72rem;color:var(--sub);margin-bottom:7px;line-height:1.45;">Как находить в бизнесе задачи, которые можно автоматизировать агентом. Базовый навык для любого AI-консультанта — без кода, только анализ и Notion/диаграммы.</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="tag tag-green" style="font-size:0.6rem;">💰 от $300 за аудит</span>
+          <span class="tag tag-accent" style="font-size:0.6rem;">точка входа</span>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="card2">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px;">
+          <div style="font-size:0.82rem;font-weight:800;color:var(--text);">Prompt Engineering для агентов</div>
+          <span class="difficulty-easy">★☆☆ легко</span>
+        </div>
+        <div style="font-size:0.72rem;color:var(--sub);margin-bottom:7px;line-height:1.45;">Как писать системные инструкции для агентов, которые работают надёжно. Отличие от обычных промптов: цепочки действий, обработка ошибок, контекст памяти.</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="tag tag-yellow" style="font-size:0.6rem;">💰 фриланс Upwork $30-80/ч</span>
+          <span class="tag tag-teal" style="font-size:0.6rem;">высокий спрос</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Right: SIDE HUSTLE СИГНАЛЫ -->
+  <div>
+    <div class="section-title">💰 Side Hustle сигналы</div>
+    <div class="card" style="display:flex;flex-direction:column;gap:10px;">
+
+      <div class="card2" style="display:flex;align-items:flex-start;gap:12px;">
+        <div style="font-size:1.4rem;flex-shrink:0;">🤖</div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+            <div style="font-size:0.82rem;font-weight:800;color:var(--text);">Установщик AI-агентов</div>
+            <span class="income-badge">$500–2000/мес</span>
+          </div>
+          <div style="font-size:0.7rem;color:var(--sub);line-height:1.4;">Настраиваешь ChatGPT Workspace Agents для малого бизнеса: отчёты, поддержка клиентов, автоконтент. Горячий рынок — продукт только вышел.</div>
+        </div>
+      </div>
+
+      <div class="card2" style="display:flex;align-items:flex-start;gap:12px;">
+        <div style="font-size:1.4rem;flex-shrink:0;">📝</div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+            <div style="font-size:0.82rem;font-weight:800;color:var(--text);">AI Контент-агентство</div>
+            <span class="income-badge">$500–2000/клиент/мес</span>
+          </div>
+          <div style="font-size:0.7rem;color:var(--sub);line-height:1.4;">Блоги, email-рассылки, соцсети — через AI. Не промпт-инженер, а менеджер: ставишь задачи агентам, контролируешь качество, сдаёшь клиенту.</div>
+        </div>
+      </div>
+
+      <div class="card2" style="display:flex;align-items:flex-start;gap:12px;">
+        <div style="font-size:1.4rem;flex-shrink:0;">👔</div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+            <div style="font-size:0.82rem;font-weight:800;color:var(--text);">AI Ghostwriter для LinkedIn</div>
+            <span class="income-badge">$1000–5000/мес</span>
+          </div>
+          <div style="font-size:0.7rem;color:var(--sub);line-height:1.4;">Пишешь посты топ-менеджерам через AI. 1 звонок в неделю + Claude/ChatGPT = 3–5 постов. Уже устойчивая ниша, ищи клиентов на LinkedIn.</div>
+        </div>
+      </div>
+
+      <div class="card2" style="display:flex;align-items:flex-start;gap:12px;">
+        <div style="font-size:1.4rem;flex-shrink:0;">🔧</div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+            <div style="font-size:0.82rem;font-weight:800;color:var(--text);">AI Аудит для бизнеса</div>
+            <span class="income-badge">$300–800/проект</span>
+          </div>
+          <div style="font-size:0.7rem;color:var(--sub);line-height:1.4;">Находишь 3–5 мест в бизнесе, где AI экономит время и деньги. Пишешь короткий отчёт и рекомендации. Первый продукт для нашей аудитории без кода.</div>
+        </div>
+      </div>
+
+      <div class="card2" style="display:flex;align-items:flex-start;gap:12px;">
+        <div style="font-size:1.4rem;flex-shrink:0;">🎙️</div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+            <div style="font-size:0.82rem;font-weight:800;color:var(--text);">AI Озвучка и локализация</div>
+            <span class="income-badge">$50–500/проект</span>
+          </div>
+          <div style="font-size:0.7rem;color:var(--sub);line-height:1.4;">ElevenLabs + переводчик = локализация видео/подкастов для глобальных брендов. Низкий барьер входа, проекты на Fiverr и Upwork.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- SECTION 3: КОНТЕНТ-ХУКИ + КОНКУРЕНТЫ + АУДИТОРИЯ -->
+<div style="display:grid;grid-template-columns:1.1fr 0.9fr 0.9fr;gap:18px;margin-bottom:28px;">
+
+  <!-- Col 1: КОНТЕНТ-ХУКИ -->
+  <div>
+    <div class="section-title">✍️ Контент-хуки</div>
+    <div class="card" style="display:flex;flex-direction:column;gap:10px;">
+
+      <div class="card2">
+        <div class="hook-label hook-reach">максимальный охват</div>
+        <div style="font-size:0.8rem;font-weight:700;color:var(--text);line-height:1.4;">"Microsoft запустил управление AI-агентами. Через 3 года у каждой компании будет команда из роботов"</div>
+        <div style="font-size:0.68rem;color:var(--muted);margin-top:4px;">Объясни что такое агент — простой аналог: "как нанять сотрудника, которого не надо кормить"</div>
+      </div>
+
+      <div class="card2">
+        <div class="hook-label hook-viral">вирусный</div>
+        <div style="font-size:0.8rem;font-weight:700;color:var(--text);line-height:1.4;">"Anthropic отказался делать оружие — и его выгнали из Пентагона. ChatGPT согласился. Выбор за вами"</div>
+        <div style="font-size:0.68rem;color:var(--muted);margin-top:4px;">Горячая тема, поляризует аудиторию, вызывает дискуссию — не занимай сторону, дай факты</div>
+      </div>
+
+      <div class="card2">
+        <div class="hook-label hook-edu">образовательный</div>
+        <div style="font-size:0.8rem;font-weight:700;color:var(--text);line-height:1.4;">"ChatGPT для учителей теперь сам пишет задания, отвечает ученикам и делает отчёты. Как настроить за 10 минут — бесплатно до 6 мая"</div>
+        <div style="font-size:0.68rem;color:var(--muted);margin-top:4px;">Чёткий call-to-action + дедлайн. Идеально для родителей, учителей, студентов</div>
+      </div>
+
+      <div class="card2">
+        <div class="hook-label hook-fear">закрытие страха</div>
+        <div style="font-size:0.8rem;font-weight:700;color:var(--text);line-height:1.4;">"ИИ не заберёт твою работу. Его заберут люди, которые умеют ставить задачи ИИ-агентам"</div>
+        <div style="font-size:0.68rem;color:var(--muted);margin-top:4px;">Переформулирует страх в действие. Чистый Jobescape-месседж</div>
+      </div>
+
+      <div class="card2">
+        <div class="hook-label hook-inspo">инспирейшн</div>
+        <div style="font-size:0.8rem;font-weight:700;color:var(--text);line-height:1.4;">"Парень настроил ChatGPT-агента за выходные. Теперь берёт $1500 с малого бизнеса за установку. Без кода, без опыта"</div>
+        <div style="font-size:0.68rem;color:var(--muted);margin-top:4px;">Реальная возможность из вчерашних новостей — конкретная, достижимая, без хайпа</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Col 2: КОНКУРЕНТЫ -->
+  <div>
+    <div class="section-title">🏁 Конкуренты</div>
+    <div class="card" style="display:flex;flex-direction:column;gap:10px;">
+
+      <div class="card2">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+          <div style="font-size:0.78rem;font-weight:800;color:var(--text);">OpenAI Workspace Agents → EDU</div>
+          <span class="signal-high">⚡ HIGH</span>
+        </div>
+        <div style="font-size:0.7rem;color:var(--sub);line-height:1.4;margin-bottom:6px;">ChatGPT открыл агентов для учителей и EDU-планов. Они могут автоматизировать учебный процесс — это прямая угроза нашей аудитории.</div>
+        <div style="font-size:0.65rem;color:var(--muted);font-style:italic;">→ Наш ответ: учим использовать это как инструмент, а не бояться</div>
+      </div>
+
+      <div class="card2">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+          <div style="font-size:0.78rem;font-weight:800;color:var(--text);">Google AI Educator Series</div>
+          <span class="signal-mid">⚠️ MID</span>
+        </div>
+        <div style="font-size:0.7rem;color:var(--sub);line-height:1.4;margin-bottom:6px;">Запуск 13 мая — бесплатные модули для 6 млн учителей США. Google идёт в EdTech напрямую через бесплатный контент.</div>
+        <div style="font-size:0.65rem;color:var(--muted);font-style:italic;">→ Наш ответ: практика + монетизация — то, чего нет у Google</div>
+      </div>
+
+      <div class="card2">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+          <div style="font-size:0.78rem;font-weight:800;color:var(--text);">D2L Lumi AI-Tutor</div>
+          <span class="signal-mid">⚠️ MID</span>
+        </div>
+        <div style="font-size:0.7rem;color:var(--sub);line-height:1.4;margin-bottom:6px;">Пилот в медицинских вузах в мае. AI-тьютор, персонализированные рекомендации, аналитика успеваемости. B2B EdTech сегмент.</div>
+        <div style="font-size:0.65rem;color:var(--muted);font-style:italic;">→ Наш ответ: мы B2C — учим людей зарабатывать, они учат студентов</div>
+      </div>
+
+      <div class="card2">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+          <div style="font-size:0.78rem;font-weight:800;color:var(--text);">Microsoft 365 E7 + Copilot</div>
+          <span class="signal-low">📊 LOW</span>
+        </div>
+        <div style="font-size:0.7rem;color:var(--sub);line-height:1.4;margin-bottom:6px;">Корпоративный пакет $99/мес с агентами встроен в рабочее место. Корпорации уже платят — нам важно обучать сотрудников использовать это.</div>
+        <div style="font-size:0.65rem;color:var(--muted);font-style:italic;">→ Наш ответ: B2B2C — корпоративное обучение через нас</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Col 3: ЧТО СПРАШИВАЕТ АУДИТОРИЯ -->
+  <div>
+    <div class="section-title">🙋 Что спрашивает аудитория</div>
+    <div class="card">
+
+      <div class="card2" style="margin-bottom:10px;">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text);margin-bottom:3px;">💬 "Чем агент отличается от обычного ChatGPT?"</div>
+        <div style="font-size:0.68rem;color:var(--sub);line-height:1.35;">Страх сложности. Людям кажется, что "агент" — это что-то для программистов. Нужен простой аналог.</div>
+      </div>
+
+      <div class="card2" style="margin-bottom:10px;">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text);margin-bottom:3px;">💬 "Я не технарь — смогу ли я заработать на AI?"</div>
+        <div style="font-size:0.68rem;color:var(--sub);line-height:1.35;">Ключевой барьер нашей аудитории. Workspace Agents без кода — идеальный ответ на этот вопрос прямо сейчас.</div>
+      </div>
+
+      <div class="card2" style="margin-bottom:10px;">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text);margin-bottom:3px;">💬 "ИИ заменит мою профессию?"</div>
+        <div style="font-size:0.68rem;color:var(--sub);line-height:1.35;">Экзистенциальный страх — усиливается каждый раз, когда выходят агенты. Нужен успокаивающий, но честный ответ.</div>
+      </div>
+
+      <div class="card2" style="margin-bottom:12px;">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text);margin-bottom:3px;">💬 "Почему Anthropic не взяли в Пентагон?"</div>
+        <div style="font-size:0.68rem;color:var(--sub);line-height:1.35;">Новостной хайп. Люди не понимают, что это значит для обычного использования Claude — нужно объяснение без технических деталей.</div>
+      </div>
+
+      <div class="insight-box">
+        <strong>💡 Продуктовый инсайт:</strong><br>
+        <span style="font-size:0.7rem;color:var(--sub);line-height:1.5;">Аудитория готова учиться агентам, но боится слова "агент". Нужен модуль <strong style="color:var(--teal);">"Агенты без кода"</strong> с понятным первым шагом. Workspace Agents — идеальный входной продукт: бесплатно, наглядно, результат за 1 час.</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- SECTION 4: ИНСТРУМЕНТЫ ДНЯ -->
+<div class="section-title">🛠️ Инструменты дня</div>
+<div class="card" style="margin-bottom:24px;">
+  <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px;">
+
+    <div class="tool-pill">
+      <span class="badge badge-new">NEW</span>
+      <span style="color:var(--text);">Microsoft Agent 365</span>
+      <span style="color:var(--muted);font-size:0.65rem;">$15/мес · агент-менеджмент</span>
+    </div>
+
+    <div class="tool-pill">
+      <span class="badge badge-new">NEW</span>
+      <span style="color:var(--text);">ChatGPT Workspace Agents</span>
+      <span style="color:var(--muted);font-size:0.65rem;">бесплатно до 6 мая · Codex-powered</span>
+    </div>
+
+    <div class="tool-pill">
+      <span class="badge badge-new">NEW</span>
+      <span style="color:var(--text);">Microsoft 365 E7 Suite</span>
+      <span style="color:var(--muted);font-size:0.65rem;">$99/мес · Copilot + Agent 365</span>
+    </div>
+
+    <div class="tool-pill">
+      <span class="badge badge-preview">PREVIEW</span>
+      <span style="color:var(--text);">Agent 365 Registry Sync</span>
+      <span style="color:var(--muted);font-size:0.65rem;">AWS + Google агенты → Microsoft</span>
+    </div>
+
+    <div class="tool-pill">
+      <span class="badge badge-trend">TREND</span>
+      <span style="color:var(--text);">OpenClaw</span>
+      <span style="color:var(--muted);font-size:0.65rem;">локальные AI агенты · open-source</span>
+    </div>
+
+    <div class="tool-pill">
+      <span class="badge badge-upgrade">SIGNAL</span>
+      <span style="color:var(--text);">Anthropic Mythos</span>
+      <span style="color:var(--muted);font-size:0.65rem;">засекречено · только для АНБ</span>
+    </div>
+
+  </div>
+  <div style="background:rgba(124,92,252,0.05);border:1px solid rgba(124,92,252,0.15);border-radius:8px;padding:10px 14px;font-size:0.7rem;color:var(--sub);line-height:1.5;">
+    <strong style="color:var(--accent);">Тема дня:</strong> Агентская эпоха официально открыта — 1 мая 2026 войдёт в историю как день, когда AI-агенты стали корпоративным стандартом. Microsoft, OpenAI и все крупные игроки одновременно перешли от чат-интерфейса к автономным агентам.
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="margin-top:8px;padding-top:14px;border-top:1px solid #1e1e30;font-size:0.68rem;color:#64748b;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+  <div>Jobescape · AI Daily Brief · 2026-05-01</div>
+  <div style="display:flex;gap:16px;">
+    <span>Источники: Microsoft Security Blog · EdTech Innovation Hub · CNN Business · VentureBeat · AutoGPT.net</span>
+  </div>
+</div>
+
+</body>
+</html>
